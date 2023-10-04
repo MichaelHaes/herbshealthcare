@@ -1,10 +1,12 @@
 import './App.css';
-import Index from './components/Index'
+import Navbar from './Components/Navbar';
+import Homepage from './Components/Homepage';
 
 function App() {
   return (
     <div className="App">
-      <Index/>
+      <Navbar/>
+      <Homepage/>
     </div>
   );
 }
