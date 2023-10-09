@@ -1,14 +1,27 @@
-
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-  #navbar {
-    background-color: #14AE5C;
-  }
+#navbar {
+  background-color: #14AE5C;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.scroll-container {
+  flex-grow: 1;
+  scroll-snap-type: y mandatory;
+}
+
+section {
+  scroll-snap-align: start;
+}
+
