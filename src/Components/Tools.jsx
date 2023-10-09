@@ -141,7 +141,6 @@ const Tools = () => {
                             </Typography>
                         </CardContent>
                     </Card>
-
                 </Grid>
             </Grid>
         </Container>

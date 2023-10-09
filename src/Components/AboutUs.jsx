@@ -5,6 +5,7 @@ import SvgIcon from '@mui/material/SvgIcon'
 import Grid from '@mui/material/Unstable_Grid2'
 import Typography from '@mui/material/Typography'
 import { Grass, WaterDrop, Lightbulb, Spa } from '@mui/icons-material';
+import Box from '@mui/material/Box'
 
 const AboutUs = () => {
     return (
@@ -111,10 +112,6 @@ const AboutUs = () => {
                     </Paper>
                 </Grid>
             </Grid>
-
-
-
-
         </Container>
     )
 }

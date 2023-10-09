@@ -20,6 +20,7 @@ const Navbar = () => {
         />
         <Box>
           <Button href="#" sx={{color:'white'}}>Link</Button>
+          <Button href="#" sx={{color:'white'}}>Login</Button>
           <Button href="#" sx={{color:'white'}}>All Plants</Button>
         </Box>
       </Toolbar>
