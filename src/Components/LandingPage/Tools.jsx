@@ -4,10 +4,10 @@ import Grid from '@mui/material/Unstable_Grid2'
 import Container from '@mui/material/Container'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography'
-import Photo1 from '../Assets/photo1.jpg'
-import Photo2 from '../Assets/photo2.jpg'
-import Photo3 from '../Assets/photo3.jpg'
-import Photo4 from '../Assets/photo4.jpg'
+import Photo1 from '../../Assets/photo1.jpg'
+import Photo2 from '../../Assets/photo2.jpg'
+import Photo3 from '../../Assets/photo3.jpg'
+import Photo4 from '../../Assets/photo4.jpg'
 
 const Tools = () => {
     return (

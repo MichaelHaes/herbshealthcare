@@ -2,7 +2,7 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import Logo from '../Assets/herbscare_logo.png';
+import Logo from '../../Assets/herbscare_logo.png';
 import Button from '@mui/material/Button';
 
 const Navbar = () => {
