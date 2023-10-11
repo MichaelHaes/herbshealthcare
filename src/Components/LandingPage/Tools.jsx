@@ -17,11 +17,13 @@ const Tools = () => {
         }}>
             <Typography variant='h4' sx={{
                 textAlign: 'center',
-                marginBottom: 5
+                marginBottom: 7
             }}>
                 Technology
             </Typography>
             <Grid container spacing={5}>
+
+                {/* Photoresistor */}
                 <Grid item xs={8} >
                     <Card sx={{
                         backgroundColor: '#8DB69E'
@@ -31,15 +33,19 @@ const Tools = () => {
                                 Photoresistor
                             </Typography>
                             <Typography variant='body1'>
+                                <p align='justify'>
                                 Photoresistors are light-sensitive sensors that change their resistance in response to light intensity.
                                 In the dark, the resistance of a photoresistor is very high, typically in the millions of ohms.
                                 However, when exposed to light, the resistance of a photoresistor decreases, and the amount of resistance
                                 change depends on the intensity of the light given.
+                                </p>
                             </Typography>
                         </CardContent>
                     </Card>
 
                 </Grid>
+
+                
                 <Grid item xs={4} >
                     <Box
                         position='relative'
@@ -53,6 +59,8 @@ const Tools = () => {
                         src={Photo1}
                     />
                 </Grid>
+
+                {/* ESP32 Microcontroller */}
                 <Grid item xs={4} >
                     <Box
                         position='relative'
@@ -75,13 +83,16 @@ const Tools = () => {
                                 ESP 32 Microcontroller
                             </Typography>
                             <Typography variant='body1'>
+                                <p align = "justify">
                                 The ESP32 serves as the brains behind all your equipment, acting as the central hub for tasks like watering plants and
                                 monitoring soil moisture levels. It's the powerhouse that stores and executes the code to make it all happen seamlessly.
+                                </p>
                             </Typography>
                         </CardContent>
                     </Card>
-
                 </Grid>
+
+                {/* LED 16-bit */}
                 <Grid item xs={8} >
                     <Card sx={{
                         backgroundColor: '#8DB69E'
@@ -91,13 +102,14 @@ const Tools = () => {
                                 LED 16-bit
                             </Typography>
                             <Typography variant='body1'>
+                                <p align="justify">
                                 A 16-bit LED is used to illuminate plants when they lack sufficient light.
                                 When the photoresistor detects a dark environment, the LED will shine just
                                 enough to brighten things up.
+                                </p>
                             </Typography>
                         </CardContent>
                     </Card>
-
                 </Grid>
                 <Grid item xs={4} >
                     <Box
@@ -112,6 +124,8 @@ const Tools = () => {
                         src={Photo3}
                     />
                 </Grid>
+
+                {/* Water Pump */}
                 <Grid item xs={4} >
                     <Box
                         position='relative'
@@ -131,17 +145,21 @@ const Tools = () => {
                     }}>
                         <CardContent>
                             <Typography variant='h4' sx={{ marginBottom: '15px' }}>
-                                Photoresistor
+                                Water Pump
                             </Typography>
                             <Typography variant='body1'>
-                                Photoresistors are light-sensitive sensors that change their resistance in response to light intensity.
-                                In the dark, the resistance of a photoresistor is very high, typically in the millions of ohms.
-                                However, when exposed to light, the resistance of a photoresistor decreases, and the amount of resistance
-                                change depends on the intensity of the light given.
+                                <p align="justify">
+                                Water pump is a small, lightweight, and portable water pump that is typically used in low-flow applications.
+                                Since the small water pump uses small voltage, it could be powered up with battery 5V. By
+                                connect tube pipe to the motor outlet, and submerge it in water and power it.
+                                </p>
                             </Typography>
                         </CardContent>
                     </Card>
                 </Grid>
+
+                {/* Breadboard */}
+
             </Grid>
         </Container>
     )
