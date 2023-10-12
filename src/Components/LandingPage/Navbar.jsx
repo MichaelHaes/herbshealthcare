@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 
 const Navbar = () => {
   return (
-    <AppBar position='' sx={{
+    <AppBar position='static' sx={{
       backgroundColor: '#14AE5C',
     }}>
       <Toolbar sx={{ height: 100 }}>
@@ -19,8 +19,8 @@ const Navbar = () => {
           src={Logo}
         />
         <Box>
-          <Button href="#" sx={{color:'white'}}>Link</Button>
-          <Button href="#" sx={{color:'white'}}>Login</Button>
+          <Button href="/showuser" sx={{color:'white'}}>Show User</Button>
+          <Button href="/login" sx={{color:'white'}}>Login</Button>
           <Button href="#" sx={{color:'white'}}>All Plants</Button>
         </Box>
       </Toolbar>
