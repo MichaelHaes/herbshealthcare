@@ -1,14 +1,15 @@
 const axios = require("axios");
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
-
+var cors = require("cors");
 const express = require('express')
 const app = express()
 const port = 5000
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.use(cors());
+app.get('/', function (req, res) {
+  res.send('API is working properly');
+});
 
 //fetch from json server
 app.get('/user', function (req, res) {
@@ -42,9 +43,9 @@ app.listen(port, () => {
 // async function main() {
 //     await prisma.user.create({
 //       data: {
-//         name: 'Alice',
-//         email: 'alice@prisma.o',
-//         password: 'alice'
+//         name: 'Mike',
+//         email: 'mike@prisma.o',
+//         password: 'mike'
 //       },
 //     })
   
