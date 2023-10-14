@@ -12,9 +12,9 @@ const Homepage = () => {
       <section id='section2'>
         <AboutUs />
       </section>
-      <section id='section3'>
+      {/* <section id='section3'>
         <Tools />
-      </section>
+      </section> */}
     </div>
   )
 }
