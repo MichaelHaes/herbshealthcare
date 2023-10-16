@@ -33,11 +33,12 @@ model SensorData {
 
 model User {
   user_id     Int       @id @default(autoincrement())
-  device_id   Int       
-  createdAt   DateTime?  @default(now())
+  device_id   Int?       
+  name        String     
+  createdAt   DateTime? @default(now())
   email       String    @unique
   password    String    
 
-  Devices     Devices   @relation(fields: [device_id], references: [device_id])
+  Devices     Devices?   @relation(fields: [device_id], references: [device_id])
   @@map("user")
 }
