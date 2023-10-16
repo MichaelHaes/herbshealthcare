@@ -29,9 +29,6 @@ const Landing = () => {
   return (
     <Container sx={{
       height:'607px',
-      background: `url(${background})`,
-      backgroundSize: 'cover',
-      marginLeft:'0px',
     }}>
       <Grid container spacing={5} sx={{marginTop : "0px"}}>
         <Grid item xs={8} >
