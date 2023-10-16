@@ -9,7 +9,6 @@ import { createTheme, ThemeProvider, MuiCssBaseline } from '@mui/material/styles
 import CssBaseline from '@mui/material/CssBaseline';
 import BalooBhaijaan from '../../Font/BalooBhaijaan.ttf'
 import Paper from '@mui/material/Paper';
-import background from '../../Assets/landingPage_bg.png'
 
 const Landing = () => {
   const theme = createTheme({
@@ -33,7 +32,6 @@ const Landing = () => {
       background: `url(${background})`,
       backgroundSize: 'cover',
       marginLeft:'0px',
-      maxWidth:'100%'
     }}>
       <Grid container spacing={5} sx={{marginTop : "0px"}}>
         <Grid item xs={8} >
