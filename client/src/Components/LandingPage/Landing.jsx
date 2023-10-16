@@ -33,6 +33,7 @@ const Landing = () => {
       background: `url(${background})`,
       backgroundSize: 'cover',
       marginLeft:'0px',
+      maxWidth:'100%'
     }}>
       <Grid container spacing={5} sx={{marginTop : "0px"}}>
         <Grid item xs={8} >
