@@ -14,7 +14,9 @@ const Homepage = () => {
       }}>
         <Landing />
       </Box>
-      <Box id='section2'>
+      <Box id='section2'sx={{
+        backgroundColor: '#C6D8C5',
+      }}>
         <AboutUs />
       </Box>
       {/* <Box id='section3'>

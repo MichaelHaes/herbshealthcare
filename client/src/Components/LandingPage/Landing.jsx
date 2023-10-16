@@ -76,7 +76,6 @@ const Landing = () => {
               backgroundColor: '#000000',
               display: 'list-item',
               opacity:'50%',
-              borderRadius:'10px',
               fontSize:'25px',
               '&:hover': {
                 backgroundColor: '#FFFFFF',

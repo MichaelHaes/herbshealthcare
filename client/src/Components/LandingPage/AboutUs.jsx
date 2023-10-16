@@ -3,8 +3,28 @@ import Container from '@mui/material/Container'
 import Card from '@mui/material/Card'
 import Typography from '@mui/material/Typography'
 import { Button, ButtonGroup } from '@mui/material'
+import Grid from '@mui/material/Unstable_Grid2'
+import { createTheme, ThemeProvider, MuiCssBaseline } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import BalooBhaijaan from '../../Font/BalooBhaijaan.ttf'
 
 const AboutUs = () => {
+    const theme = createTheme({
+        typography: {
+          fontFamily: 'BalooBhaijaan',
+        },
+        components: {
+          MuiCssBaseline: {
+            styleOverrides: `
+              @font-face {
+                font-family: 'BalooBhaijaan';
+                src: url(${BalooBhaijaan});
+              }
+            `,
+          },
+        },
+      });
+
     const desc = [
         'At the heart of this herbal oasis lies a sophisticated embedded system. Equipped with sensors and processors, it continuously monitors the vital signs of your herbs. From soil moisture levels to temperature and humidity, the system keeps a watchful eye on the well-being of your green companions.',
         'Say goodbye to the hassle of manual watering! The Herbal Health Care System takes care of hydration automatically. When the soil moisture drops below the ideal level, a precision pump springs into action, delivering just the right amount of water to keep your herbs flourishing. No more guesswork, no more overwatering or underhydration just perfectly balanced moisture for thriving herbs',
@@ -20,43 +40,92 @@ const AboutUs = () => {
     return (
         <Container sx={{
             height: '100vh',
-            textAlign: 'center'
+            textAlign: 'center',
         }}>
-            <Typography variant='h1'>
-                Herbs Care
-            </Typography>
-            <ButtonGroup variant="text" sx={{
-                width: '100%',
-                justifyContent: 'space-between'
+            <Grid sx={{
+                paddingTop:'40px',
             }}>
-                <Button
-                    id='0' fullWidth color='inherit' onClick={handleButton} variant={button === '0' ? 'contained' : 'text'}
-                    className="custom-button"
-                >Embedded Intelligence</Button>
-                <Button
-                    id='1' fullWidth color='inherit' onClick={handleButton} variant={button === '1' ? 'contained' : 'text'}
-                >Auto Watering System</Button>
-                <Button
-                    id='2' fullWidth color='inherit' onClick={handleButton} variant={button === '2' ? 'contained' : 'text'}
-                >LED Light Control</Button>
-                <Button
-                    id='3' fullWidth color='inherit' onClick={handleButton} variant={button === '3' ? 'contained' : 'text'}
-                >Health and Wellness</Button>
-            </ButtonGroup>
-            <Card raised sx={{
-                margin: '5rem',
-                height: '50%',
-                paddingX:'4rem',
-                fontSize: '28px',
-                backgroundColor: 'rgba(0,0,0,0.3)',
-                textAlign: 'justify',
-                color: '#D7E6DD',
-                display:'flex',
-                alignItems:'center',
-                justifyContent:'center'
-            }}>
-                {desc[button]}
-            </Card>
+            <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <Typography variant='h1' sx={{}}>
+                    Herbs Care
+                </Typography>
+            </ThemeProvider>
+                <ButtonGroup variant="text" sx={{
+                    width: '100%',
+                    justifyContent: 'space-between',
+                    paddingTop:'20px',
+                    height:'100px'
+                }}>
+                    <Button sx={{
+                            backgroundColor: '#9FB99D',
+                            borderRadius:'10px',
+                            fontSize:'18px',
+                            fontWeight:'bold',
+                            '&:hover': {
+                                backgroundColor: '#017414',
+                                color: '#FFFFFF'
+                            },
+                            color: '#000000'
+                            }}
+                        id='0' fullWidth color='inherit' onClick={handleButton} variant={button === '0' ? 'contained' : 'text'}
+                        className="custom-button"
+                    >Embedded Intelligence</Button>
+                    <Button sx={{
+                            backgroundColor: '#9FB99D',
+                            borderRadius:'10px',
+                            fontSize:'18px',
+                            fontWeight:'bold',
+                            '&:hover': {
+                                backgroundColor: '#017414',
+                                color: '#FFFFFF'
+                            },
+                            color: '#000000'
+                            }}
+                        id='1' fullWidth color='inherit' onClick={handleButton} variant={button === '1' ? 'contained' : 'text'}
+                    >Auto Watering System</Button>
+                    <Button sx={{
+                            backgroundColor: '#9FB99D',
+                            borderRadius:'10px',
+                            fontSize:'18px',
+                            fontWeight:'bold',
+                            '&:hover': {
+                                backgroundColor: '#017414',
+                                color: '#FFFFFF'
+                            },
+                            color: '#000000'
+                            }}
+                        id='2' fullWidth color='inherit' onClick={handleButton} variant={button === '2' ? 'contained' : 'text'}
+                    >LED Light Control</Button>
+                    <Button sx={{
+                            backgroundColor: '#9FB99D',
+                            borderRadius:'10px',
+                            fontSize:'18px',
+                            fontWeight:'bold',
+                            '&:hover': {
+                                backgroundColor: '#017414',
+                                color: '#FFFFFF'
+                            },
+                            color: '#000000'
+                            }}
+                        id='3' fullWidth color='inherit' onClick={handleButton} variant={button === '3' ? 'contained' : 'text'}
+                    >Health and Wellness</Button>
+                </ButtonGroup>
+                <Card raised sx={{
+                    margin: '5rem',
+                    height: '50%',
+                    paddingX:'4rem',
+                    fontSize: '28px',
+                    backgroundColor: 'rgba(0,0,0,0.3)',
+                    textAlign: 'justify',
+                    color: '#D7E6DD',
+                    display:'flex',
+                    alignItems:'center',
+                    justifyContent:'center'
+                }}>
+                    {desc[button]}
+                </Card>
+            </Grid>
         </Container>
     )
 }
