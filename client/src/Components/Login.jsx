@@ -25,9 +25,12 @@ const Login = () => {
       password: formData.password
     };
 
-    axios.post(`http://localhost:8000/user`, { user })
-      .then(() => {
-        console.log("new user added axios")
+    axios.post(`http://localhost:5000/adduser`, { user })
+      .then(res => {
+        console.log(res)
+      })
+      .catch(error => {
+        console.error('Error adding user:', error);
       });
   }
 
