@@ -169,7 +169,7 @@ const Tools = () => {
                             marginLeft: '40px',
                             transition: '1s',
                             '&:hover': {
-                                height: '230px',
+                                height: '227px',
                                 marginTop: '-10px',
                                 marginLeft: '15px',
                             }

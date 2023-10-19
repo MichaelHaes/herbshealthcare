@@ -31,13 +31,16 @@ const Navbar = () => {
       backgroundColor: '#017414',
     }}>
       <Toolbar position='relative' sx={{ height: 100, left:'-10px', }}>
-        <Box
+        <a href='/'>
+          <Box
           component='img'
           sx={{
-            width: '100px'
+            width: '85px',
+            marginTop:'10px'
           }}
           src={Logo}
         />
+        </a>
         <Grid
           container
           direction="row"
