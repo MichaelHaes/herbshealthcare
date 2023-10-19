@@ -21,13 +21,13 @@ model Devices {
 }
 
 model SensorData {
-  sensor_id   Int       @id @default(autoincrement())
-  device_id   Int       
+  sensor_id   Int       @id @default(autoincrement()) @unique
+  device_id   Int?       
   createdAt   DateTime  @default(now())
   humidity    String    
   luminosity  String    
 
-  Devices     Devices   @relation(fields: [device_id], references: [device_id])
+  Devices     Devices?   @relation(fields: [device_id], references: [device_id])
   @@map("sensor_data")
 }
 
