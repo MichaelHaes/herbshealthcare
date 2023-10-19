@@ -8,9 +8,8 @@ import { createTheme, ThemeProvider, MuiCssBaseline } from '@mui/material/styles
 import CssBaseline from '@mui/material/CssBaseline';
 import Khula from '../../Font/Khula.ttf'
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Unstable_Grid2'
 
-const Navbar = () => {
+const NavbarDashboard = () => {
   const theme = createTheme({
     typography: {
       fontFamily: 'Khula',
@@ -38,32 +37,14 @@ const Navbar = () => {
           }}
           src={Logo}
         />
-        <Grid
-          container
-          direction="row"
-          justifyContent="right"
-          sx={{ width:'100%'}}
-        >
-        <ThemeProvider theme={theme}>
+          <ThemeProvider theme={theme}>
             <CssBaseline />
-              <Button href="#" sx={{color:'white', fontSize:'25px', marginTop:'5px',
-              '&:hover': {
-                fontWeight:'bolder'
-              },
-            }}>All Plants</Button>
-              <Button href="/login" sx={{color:'white', fontSize:'25px', marginTop:'5px',
-              '&:hover': {
-                fontWeight:'bolder'
-              },}}>Login</Button>
+              <Button href="#" sx={{color:'white', fontSize:'25px', marginTop:'5px'}}>All Plants</Button>
+              <Button href="#" sx={{color:'white', fontSize:'25px', marginTop:'5px'}}>Logout</Button>
           </ThemeProvider>
-        </Grid>
-          {/* <ThemeProvider theme={theme}>
-            <CssBaseline />
-              <Button href="/login" sx={{color:'white', fontSize:'25px', marginTop:'5px'}}>Login</Button>
-          </ThemeProvider> */}
       </Toolbar>
     </AppBar>
   )
 }
 
-export default Navbar
+export default NavbarDashboard
