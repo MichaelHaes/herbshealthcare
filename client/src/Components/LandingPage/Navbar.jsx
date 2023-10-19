@@ -51,10 +51,6 @@ const Navbar = () => {
                 fontWeight:'bolder'
               },
             }}>All Plants</Button>
-              <Button href="/showuser" sx={{color:'white', fontSize:'25px', marginTop:'5px',
-              '&:hover': {
-                fontWeight:'bolder'
-              },}}>Show User</Button>
               <Button href="/login" sx={{color:'white', fontSize:'25px', marginTop:'5px',
               '&:hover': {
                 fontWeight:'bolder'

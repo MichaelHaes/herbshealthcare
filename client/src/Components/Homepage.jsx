@@ -16,12 +16,16 @@ const Homepage = () => {
       </Box>
       <Box id='section2'sx={{
         backgroundColor: '#C6D8C5',
+        
       }}>
         <AboutUs />
       </Box>
-      {/* <Box id='section3'>
+      <Box id='section3' sx={{
+        backgroundColor: '#C6D8C5',
+        
+      }}>
         <Tools />
-      </Box> */}
+      </Box>
     </Box>
   )
 }

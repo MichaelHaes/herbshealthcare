@@ -7,6 +7,7 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { createTheme, ThemeProvider, MuiCssBaseline } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import BalooBhaijaan from '../../Font/BalooBhaijaan.ttf'
+import background from '../../Assets/Group 2.png'
 
 const AboutUs = () => {
     const theme = createTheme({
