@@ -9,8 +9,21 @@ app.use(cors());
 app.use(express.json()); 
 
 
-app.get('/', function (req, res) {
-  res.send('API is working properly');
+app.get('/login', async (req, res) => {
+  try {
+    const {email, password} = req.query
+    
+    const user = await prisma.user.findUnique({
+      where: {
+        email: email
+      }
+    })
+    // res.redirect('http://localhost:3000/dashboard')
+    res.json(user)
+  } catch (error) {
+    console.error('Error in /login route:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
 });
 
 app.post('/adduser', async (req, res) => {

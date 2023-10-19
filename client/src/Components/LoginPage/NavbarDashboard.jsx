@@ -9,7 +9,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Khula from '../../Font/Khula.ttf'
 import Paper from '@mui/material/Paper';
 
-const Navbar = () => {
+const NavbarDashboard = () => {
   const theme = createTheme({
     typography: {
       fontFamily: 'Khula',
@@ -39,11 +39,12 @@ const Navbar = () => {
         />
           <ThemeProvider theme={theme}>
             <CssBaseline />
-              <Button href="/login" sx={{color:'white', fontSize:'25px', marginTop:'5px'}}>Login</Button>
+              <Button href="#" sx={{color:'white', fontSize:'25px', marginTop:'5px'}}>All Plants</Button>
+              <Button href="#" sx={{color:'white', fontSize:'25px', marginTop:'5px'}}>Logout</Button>
           </ThemeProvider>
       </Toolbar>
     </AppBar>
   )
 }
 
-export default Navbar
+export default NavbarDashboard

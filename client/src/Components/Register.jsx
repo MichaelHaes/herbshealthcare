@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Navbar from './LandingPage/Navbar';
 
-const Login = () => {
+const Register = () => {
   const [formData, setFormData] = useState({
+    username: '',
     email: '',
     password: '',
   });
@@ -20,13 +21,14 @@ const Login = () => {
     event.preventDefault();
 
     const user = {
+      name: formData.username,
       email: formData.email,
       password: formData.password
     };
 
-    axios.get(`http://localhost:5000/login`, { params: user })
+    axios.post(`http://localhost:5000/adduser`, { user })
       .then(res => {
-        console.log(res.data)
+        console.log(res)
       })
       .catch(error => {
         console.error('Error adding user:', error);
@@ -38,6 +40,10 @@ const Login = () => {
     <Navbar />
       <form onSubmit={handleSubmit}>
         <label>
+          Name:
+          <input type="text" name="username" value={formData.username} onChange={handleChange} />
+        </label>
+        <label>
           Email:
           <input type="text" name="email" value={formData.email} onChange={handleChange} />
         </label>
@@ -45,10 +51,10 @@ const Login = () => {
           Password:
           <input type="text" name="password" value={formData.password} onChange={handleChange} />
         </label>
-        <button type="submit">Login</button>
+        <button type="submit">Add</button>
       </form>
     </div>
   );
 };
 
-export default Login;
+export default Register;
