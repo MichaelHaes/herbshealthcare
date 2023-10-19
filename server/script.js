@@ -4,7 +4,7 @@ var cors = require("cors");
 const express = require('express')
 const app = express()
 const port = 5000
-
+ 
 app.use(cors());
 app.use(express.json()); 
 
@@ -18,13 +18,17 @@ app.get('/login', async (req, res) => {
         email: email
       }
     })
-    // res.redirect('http://localhost:3000/dashboard')
     res.json(user)
   } catch (error) {
     console.error('Error in /login route:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
-});
+})
+
+app.get('/showuser', async (req, res) => {
+  const users = await prisma.user.findMany()
+  res.json(users)
+})
 
 app.post('/adduser', async (req, res) => {
   const { name, email, password } = req.body.user
@@ -36,12 +40,6 @@ app.post('/adduser', async (req, res) => {
     },
   })
   res.json(newuser)
-})
-
-//get from database
-app.get('/showuser', async (req, res) => {
-  const users = await prisma.user.findMany()
-  res.json(users)
 })
 
 app.listen(port, () => {
