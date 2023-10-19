@@ -27,15 +27,25 @@ const Login = () => {
     axios.get(`http://localhost:5000/login`, { params: user })
       .then(res => {
         console.log(res.data)
+        if (res.status === 200) {
+          if (res.data.password !== user.password) {
+            throw new Error('Invalid password');
+          }
+          window.location.href = 'http://localhost:3000/dashboard';
+        }
       })
       .catch(error => {
-        console.error('Error adding user:', error);
+        if (error.message === 'Invalid password') {
+          console.error('Invalid password');
+        } else {
+          console.error('Error logging in:', error);
+        }
       });
   }
 
   return (
     <div>
-    <Navbar />
+      <Navbar />
       <form onSubmit={handleSubmit}>
         <label>
           Email:
