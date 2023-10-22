@@ -23,54 +23,56 @@ const Dashboard = () => {
                 setUser(fetchedUsers);
             });
     }, []);
+
     const theme = createTheme({
         typography: {
-          fontFamily: 'BalooBhaijaan',
+            fontFamily: 'BalooBhaijaan',
         },
         components: {
-          MuiCssBaseline: {
-            styleOverrides: `
+            MuiCssBaseline: {
+                styleOverrides: `
               @font-face {
                 font-family: 'BalooBhaijaan';
                 src: url(${BalooBhaijaan});
               }
             `,
-          },
+            },
         },
-      });   
+    });
+    
     return (
-        <div style={{backgroundColor: '#C6D8C5', height:'720px'}}>
-            <NavbarDashboard/>
+        <Box sx={{ backgroundColor: '#C6D8C5', height: '100vh' }}>
+            <NavbarDashboard />
             <Container>
                 <Grid>
                     <ThemeProvider theme={theme}>
                         <CssBaseline />
                         <Box
                             sx={{
-                            fontFamily: 'BalooBhaijaan',
-                            fontSize: '100px',
-                            height: '100px',
-                            color: 'Black', 
-                            textAlign:'center'
+                                fontFamily: 'BalooBhaijaan',
+                                fontSize: '100px',
+                                height: '100px',
+                                color: 'Black',
+                                textAlign: 'center'
                             }}
                         >
-                            Welcome Back,   
+                            Welcome Back,
                         </Box>
                         <Box
                             sx={{
-                            fontFamily: 'BalooBhaijaan',
-                            fontSize: '60px',
-                            height: '100px',
-                            color: 'Black', 
-                            textAlign:'center',
-                            padding:'50px'
+                                fontFamily: 'BalooBhaijaan',
+                                fontSize: '60px',
+                                height: '100px',
+                                color: 'Black',
+                                textAlign: 'center',
+                                padding: '50px'
                             }}
                         >
                             {user.name}
                         </Box>
                     </ThemeProvider>
                 </Grid>
-                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{paddingTop:'80px'}}>
+                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{ paddingTop: '80px' }}>
                     <Grid xs={6} display="flex" justifyContent="center" alignItems="center">
                         <Button href='/dashboard/plants'>
                             Informasi Tanaman
@@ -83,7 +85,7 @@ const Dashboard = () => {
                     </Grid>
                 </Grid>
             </Container>
-        </div>
+        </Box>
     )
 }
 
