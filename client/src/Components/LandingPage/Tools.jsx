@@ -115,7 +115,8 @@ const Tools = () => {
                             </ThemeProvider>
                             <Typography variant='body1'>
                                 <p align = "justify">
-                               tolng diisi puh, sepuh
+                                Soil Moisture Sensor, or soil moisture sensor, is an electronic device used to measure the level of humidity or air content in the soil. 
+                                These sensors have many applications in agriculture, horticulture, air resource management and environmental monitoring.
                                 </p>
                             </Typography>
                     </Grid>
