@@ -4,7 +4,7 @@ import axios from 'axios';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material'
+import { Box, CardActionArea, Container, Grid } from '@mui/material'
 
 export const PlantInformation = () => {
   const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -22,28 +22,32 @@ export const PlantInformation = () => {
 
 
   return (
-    <div>
+    <Box>
       <NavbarDashboard />
-      <ul>
-        {devices.map((device) => {
-          const createdAt = new Date(device.createdAt);
-          const formattedCreatedAt = createdAt.getDate() + ' ' + month[createdAt.getMonth()] + ' ' + createdAt.getFullYear()
-          return (
-            <Card sx={{ maxWidth: 345 }} key={device.device_id}>
-              <CardActionArea href={`/dashboard/plants/${device.device_id}`}>
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    Pot {device.device_id}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    This pot was created at {formattedCreatedAt}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          )
-        })}
-      </ul>
-    </div>
+      <Container>
+        <Grid container spacing={5} sx={{ paddingTop: '80px' }}>
+          {devices.map((device) => {
+            const createdAt = new Date(device.createdAt);
+            const formattedCreatedAt = createdAt.getDate() + ' ' + month[createdAt.getMonth()] + ' ' + createdAt.getFullYear()
+            return (
+              <Grid item xs={4} display="flex" justifyContent="center" alignItems="center">
+                <Card sx={{ width: '500px' }} key={device.device_id}>
+                  <CardActionArea href={`/dashboard/plants/${device.device_id}`}>
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        Pot {device.device_id}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        This pot was created at {formattedCreatedAt}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Grid>
+            )
+          })}
+        </Grid>
+      </Container>
+    </Box>
   )
 }
