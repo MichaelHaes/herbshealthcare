@@ -2,12 +2,17 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 var cors = require("cors");
 const express = require('express')
+const session = require('express-session')
 const app = express()
 const port = 5000
  
 app.use(cors());
 app.use(express.json()); 
-
+app.use(session({ 
+  secret: 'herbscare',  
+  resave: true, 
+  saveUninitialized: false
+})) 
 
 app.get('/login', async (req, res) => {
   try {
@@ -18,6 +23,8 @@ app.get('/login', async (req, res) => {
         email: email
       }
     })
+    req.session.user = { id: 1, username: 'example' };
+
     res.json(user)
   } catch (error) {
     console.error('Error in /login route:', error);
@@ -25,9 +32,10 @@ app.get('/login', async (req, res) => {
   }
 })
 
-app.get('/showuser', async (req, res) => {
-  const users = await prisma.user.findMany()
-  res.json(users)
+app.get('/dashboard', async (req, res) => {
+  console.log(req.session.user)
+  const user = req.session.user;
+  res.json(user)
 })
 
 app.get('/plantsinformation', async (req, res) => {

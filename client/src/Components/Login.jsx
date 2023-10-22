@@ -42,6 +42,7 @@ const Login = () => {
     
     axios.get(`http://localhost:5000/login`, { params: user })
       .then(res => {
+        window.location.href = '/dashboard'
         console.log(res.data)
       })
       .catch(error => {
