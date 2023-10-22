@@ -29,7 +29,7 @@ const Landing = () => {
   });
   return (
     <Container sx={{
-      height:'620px',
+      height:'770px',
     }}>
       <Grid container spacing={5} sx={{marginTop : "0px"}}>
         <Grid item xs={8} >

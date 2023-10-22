@@ -49,12 +49,12 @@ const Navbar = () => {
         >
         <ThemeProvider theme={theme}>
             <CssBaseline />
-              <Button href="#" sx={{color:'white', fontSize:'25px', marginTop:'5px',
+              <Button href="#" sx={{color:'white', fontSize:'25px', marginTop:'5px', fontFamily: 'BalooBhaijaan',
               '&:hover': {
                 fontWeight:'bolder'
               },
             }}>All Plants</Button>
-              <Button href="/login" sx={{color:'white', fontSize:'25px', marginTop:'5px',
+              <Button href="/login" sx={{color:'white', fontSize:'25px', marginTop:'5px', fontFamily: 'BalooBhaijaan',
               '&:hover': {
                 fontWeight:'bolder'
               },}}>Login</Button>
