@@ -10,7 +10,7 @@ import Khula from '../../Font/Khula.ttf'
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2'
 
-const Navbar = () => {
+const NavbarDashboard = () => {
   const theme = createTheme({
     typography: {
       fontFamily: 'Khula',
@@ -30,43 +30,26 @@ const Navbar = () => {
     <AppBar position='static' sx={{
       backgroundColor: '#017414',
     }}>
-      <Toolbar position='relative' sx={{ height: 100, left:'-10px', }}>
-        <a href='/'>
-          <Box
+      <Toolbar position='relative' sx={{ height: 100, left:'-10px', display: 'flex',
+        justifyContent: 'space-between' }}>
+        <Box
           component='img'
           sx={{
-            width: '85px',
-            marginTop:'10px'
+            width: '100px'
           }}
           src={Logo}
         />
-        </a>
-        <Grid
-          container
-          direction="row"
-          justifyContent="right"
-          sx={{ width:'100%'}}
-        >
-        <ThemeProvider theme={theme}>
+        <Grid>
+          <ThemeProvider theme={theme}>
             <CssBaseline />
-              <Button href="#" sx={{color:'white', fontSize:'25px', marginTop:'5px',
-              '&:hover': {
-                fontWeight:'bolder'
-              },
-            }}>All Plants</Button>
-              <Button href="/login" sx={{color:'white', fontSize:'25px', marginTop:'5px',
-              '&:hover': {
-                fontWeight:'bolder'
-              },}}>Login</Button>
+              <Button href="/dashboard/profile" sx={{color:'white', fontSize:'25px', marginTop:'5px'}}>Profil</Button>
+              <Button href="/dashboard/plants" sx={{color:'white', fontSize:'25px', marginTop:'5px'}}>All Plants</Button>
+              <Button href="/dashboard/logout" sx={{color:'white', fontSize:'25px', marginTop:'5px'}}>Logout</Button>
           </ThemeProvider>
         </Grid>
-          {/* <ThemeProvider theme={theme}>
-            <CssBaseline />
-              <Button href="/login" sx={{color:'white', fontSize:'25px', marginTop:'5px'}}>Login</Button>
-          </ThemeProvider> */}
       </Toolbar>
     </AppBar>
   )
 }
 
-export default Navbar
+export default NavbarDashboard

@@ -1,23 +1,34 @@
 import React from 'react'
-import Navbar from './LandingPage/Navbar';
 import AboutUs from './LandingPage/AboutUs';
 import Tools from './LandingPage/Tools';
 import Landing from './LandingPage/Landing'
+import Box from '@mui/material/Box'
+import background from '../Assets/landingPage_bg.png'
+import Navbar from './LandingPage/Navbar';
 
 const Homepage = () => {
   return (
-    <div>
+    <Box>
       <Navbar />
-      <section id='section1'>
+      <Box id='section1' sx={{
+        background: `url(${background})`,
+        backgroundSize: 'cover',
+      }}>
         <Landing />
-      </section>
-      <section id='section2'>
+      </Box>
+      <Box id='section2'sx={{
+        backgroundColor: '#C6D8C5',
+        
+      }}>
         <AboutUs />
-      </section>
-      <section id='section3'>
+      </Box>
+      <Box id='section3' sx={{
+        backgroundColor: '#C6D8C5',
+        
+      }}>
         <Tools />
-      </section>
-    </div>
+      </Box>
+    </Box>
   )
 }
 
