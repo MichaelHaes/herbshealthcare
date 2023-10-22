@@ -42,9 +42,15 @@ const NavbarDashboard = () => {
         <Grid>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-              <Button href="/dashboard/profile" sx={{color:'white', fontSize:'25px', marginTop:'5px'}}>Profil</Button>
-              <Button href="/dashboard/plants" sx={{color:'white', fontSize:'25px', marginTop:'5px'}}>All Plants</Button>
-              <Button href="/dashboard/logout" sx={{color:'white', fontSize:'25px', marginTop:'5px'}}>Logout</Button>
+              <Button href="/dashboard/profile" sx={{color:'white', fontSize:'25px', marginTop:'5px', fontFamily: 'BalooBhaijaan', '&:hover': {
+                fontWeight:'bolder'
+              },}}>Profil</Button>
+              <Button href="/dashboard/plants" sx={{color:'white', fontSize:'25px', marginTop:'5px', fontFamily: 'BalooBhaijaan', '&:hover': {
+                fontWeight:'bolder'
+              },}}>All Plants</Button>
+              <Button href="/dashboard/logout" sx={{color:'white', fontSize:'25px', marginTop:'5px', fontFamily: 'BalooBhaijaan', '&:hover': {
+                fontWeight:'bolder'
+              },}}>Logout</Button>
           </ThemeProvider>
         </Grid>
       </Toolbar>
