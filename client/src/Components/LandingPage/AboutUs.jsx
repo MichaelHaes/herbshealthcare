@@ -59,6 +59,7 @@ const AboutUs = () => {
                     height:'100px'
                 }}>
                     <Button sx={{
+                            fontFamily: 'BalooBhaijaan',
                             backgroundColor: '#9FB99D',
                             borderRadius:'10px',
                             fontSize:'18px',
@@ -73,6 +74,7 @@ const AboutUs = () => {
                         className="custom-button"
                     >Embedded Intelligence</Button>
                     <Button sx={{
+                            fontFamily: 'BalooBhaijaan',
                             backgroundColor: '#9FB99D',
                             borderRadius:'10px',
                             fontSize:'18px',
@@ -86,6 +88,7 @@ const AboutUs = () => {
                         id='1' fullWidth color='inherit' onClick={handleButton} variant={button === '1' ? 'contained' : 'text'}
                     >Auto Watering System</Button>
                     <Button sx={{
+                            fontFamily: 'BalooBhaijaan',
                             backgroundColor: '#9FB99D',
                             borderRadius:'10px',
                             fontSize:'18px',
@@ -99,6 +102,7 @@ const AboutUs = () => {
                         id='2' fullWidth color='inherit' onClick={handleButton} variant={button === '2' ? 'contained' : 'text'}
                     >LED Light Control</Button>
                     <Button sx={{
+                            fontFamily: 'BalooBhaijaan',
                             backgroundColor: '#9FB99D',
                             borderRadius:'10px',
                             fontSize:'18px',
