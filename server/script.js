@@ -30,6 +30,22 @@ app.get('/showuser', async (req, res) => {
   res.json(users)
 })
 
+app.get('/plantsinformation', async (req, res) => {
+  const devices = await prisma.devices.findMany()
+  res.json(devices)
+})
+
+app.get('/device', async (req, res) => {
+  const device = parseInt(req.query.id)
+  
+  const plants = await prisma.sensorData.findMany({
+    where: {
+      device_id: device
+    }
+  })
+  res.json(plants)
+})
+
 app.post('/adduser', async (req, res) => {
   const { name, email, password } = req.body.user
   const newuser = await prisma.user.create({

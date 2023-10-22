@@ -72,12 +72,12 @@ const Dashboard = () => {
                 </Grid>
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{paddingTop:'80px'}}>
                     <Grid xs={6} display="flex" justifyContent="center" alignItems="center">
-                        <Button>
+                        <Button href='/dashboard/plants'>
                             Informasi Tanaman
                         </Button>
                     </Grid>
                     <Grid xs={6} display="flex" justifyContent="center" alignItems="center">
-                        <Button>
+                        <Button href='/dashboard/reservoir'>
                             Informasi Penyimpanan Air
                         </Button>
                     </Grid>

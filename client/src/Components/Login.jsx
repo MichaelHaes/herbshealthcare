@@ -39,7 +39,7 @@ const Login = () => {
       email: formData.email,
       password: formData.password
     };
-
+    
     axios.get(`http://localhost:5000/login`, { params: user })
       .then(res => {
         console.log(res.data)
@@ -67,21 +67,21 @@ const Login = () => {
 
   return (
     <div style={{
-      height:'720px',
-      width:'100%',
+      height: '720px',
+      width: '100%',
       background: `url(${background})`,
       backgroundSize: 'cover',
       backgroundPositionY: '90px'
-      
-      }}>
-    <Navbar />
-    <Container sx={{
-      height:'620px',
+
     }}>
-      <Grid container spacing={5} sx={{marginTop : "0px"}} justifyContent={'center'}>
-        <Grid flexDirection={'row'} sx={{justifyContent:'center'}}>
+      <Navbar />
+      <Container sx={{
+        height: '620px',
+      }}>
+        <Grid container spacing={5} sx={{ marginTop: "0px" }} justifyContent={'center'}>
+          <Grid flexDirection={'row'} sx={{ justifyContent: 'center' }}>
             <ThemeProvider theme={theme}>
-            <CssBaseline />
+              <CssBaseline />
               <Box
                 sx={{
                   fontFamily: 'BalooBhaijaan',
@@ -90,46 +90,49 @@ const Login = () => {
                   color: 'white',
                   textAlign: 'center'
                 }}
-                >
+              >
                 Login
               </Box>
             </ThemeProvider>
-          <Grid sx={{marginTop:'100px',
-                    justifyContent:'center',
-                    marginLeft:'50px',
-                    }}>
-            <form>
-              <FormControl>
-                <InputLabel htmlFor="my-input">Email address</InputLabel>
-                <Input id="my-input" aria-describedby="my-helper-text" />
-                <FormHelperText id="my-helper-text">@gmail.com</FormHelperText>
-              </FormControl><br></br>
-              <FormControl>
-                <InputLabel htmlFor="my-input">Password</InputLabel>
-                <Input id="my-input" aria-describedby="my-helper-text" />
-                <FormHelperText id="my-helper-text">at least 8 letters</FormHelperText>
-              </FormControl><br></br>
-              <Button variant="contained" color="primary" type="submit" sx={{marginLeft:'60px',
-                backgroundColor: '#000000',
-                opacity:'50%',
-                borderRadius:'10px',
-                fontSize:'16px',
-                width:'40px',
-                marginTop:'20px',
-                '&:hover': {
-                  backgroundColor: '#FFFFFF',
-                  color: '#000000'
-                },
-                color: '#FFFFFF'}}>
-                Login
-              </Button>
-              
-              
-            </form>
+            <Grid sx={{
+              marginTop: '100px',
+              justifyContent: 'center',
+              marginLeft: '50px',
+            }}>
+              <form onSubmit={handleSubmit}>
+                <FormControl>
+                  <InputLabel htmlFor="my-input">Email address</InputLabel>
+                  <Input id="my-input" name="email" aria-describedby="my-helper-text" value={formData.email} onChange={handleChange}/>
+                  <FormHelperText id="my-helper-text">@gmail.com</FormHelperText>
+                </FormControl><br></br>
+                <FormControl>
+                  <InputLabel htmlFor="my-input">Password</InputLabel>
+                  <Input id="my-input" name="password" aria-describedby="my-helper-text" value={formData.password} onChange={handleChange}/>
+                  <FormHelperText id="my-helper-text">at least 8 letters</FormHelperText>
+                </FormControl><br></br>
+                <Button variant="contained" color="primary" type="submit" sx={{
+                  marginLeft: '60px',
+                  backgroundColor: '#000000',
+                  opacity: '50%',
+                  borderRadius: '10px',
+                  fontSize: '16px',
+                  width: '40px',
+                  marginTop: '20px',
+                  '&:hover': {
+                    backgroundColor: '#FFFFFF',
+                    color: '#000000'
+                  },
+                  color: '#FFFFFF'
+                }}>
+                  Login
+                </Button>
+
+
+              </form>
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
-    </Container> 
+      </Container>
     </div>
   );
 };
