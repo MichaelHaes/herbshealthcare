@@ -74,15 +74,17 @@ const Landing = () => {
           <Box sx={{ display: 'flex', gap: 2, marginTop:'20px'}}>
           <Button variant="contained" size='large'
             sx={{
-              backgroundColor: '#000000',
+              fontFamily:'BalooBhaijaan',
+              backgroundColor: '#E8E8E8',
               display: 'list-item',
-              opacity:'50%',
+              //opacity:'50%',
               fontSize:'25px',
+              color: '#00480C',
               '&:hover': {
                 backgroundColor: '#FFFFFF',
-                color: '#000000'
+                color: '#00480C'
               },
-              color: '#FFFFFF'
+              color: '#00480C'
             }}
           >
             Get started for <br></br><b>FREE</b>
@@ -90,31 +92,35 @@ const Landing = () => {
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2}}>
           <Button href='#section2' variant="contained" size='large'
               sx={{
-                backgroundColor: '#000000',
-                opacity:'50%',
+                fontFamily:'BalooBhaijaan',
+                backgroundColor: '#E8E8E8',
+                //opacity:'50%',
                 borderRadius:'10px',
                 fontSize:'20px',
+                color: '#00480C',
                 '&:hover': {
                   backgroundColor: '#FFFFFF',
-                  color: '#000000'
+                  color: '#00480C'
                 },
-                color: '#FFFFFF'
+                color: '#00480C'
               }}
             >
               Read more about us
             </Button>
             <Button href='#section3' variant="contained" size='large'
               sx={{
-                backgroundColor: '#000000',
-                opacity:'50%',
+                fontFamily:'BalooBhaijaan',
+                backgroundColor: '#E8E8E8',
+                //opacity:'50%',
                 borderRadius:'10px',
                 fontSize:'20px',
                 width:'400px',
+                color: '#00480C',
                 '&:hover': {
                   backgroundColor: '#FFFFFF',
-                  color: '#000000'
+                  color: '#00480C'
                 },
-                color: '#FFFFFF'
+                color: '#00480C'
               }}
             >
               Check out our technology!

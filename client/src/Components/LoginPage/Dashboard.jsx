@@ -11,18 +11,20 @@ import { createTheme, ThemeProvider, MuiCssBaseline } from '@mui/material/styles
 import CssBaseline from '@mui/material/CssBaseline';
 import BalooBhaijaan from '../../Font/BalooBhaijaan.ttf'
 import Paper from '@mui/material/Paper';
+import background from '../../Assets/landingPage_bg.png'
+
 
 const Dashboard = () => {
     const [user, setUser] = useState([]);
 
-    useEffect(() => {
-        axios.get(`http://localhost:5000/dashboard`)
-            .then((res) => {
-                console.log(res)
-                const fetchedUsers = res.data;
-                setUser(fetchedUsers);
-            });
-    }, []);
+    // useEffect(() => {
+    //     axios.get(`http://localhost:5000/dashboard`)
+    //         .then((res) => {
+    //             console.log(res)
+    //             const fetchedUsers = res.data;
+    //             setUser(fetchedUsers);
+    //         });
+    // }, []);
 
     const theme = createTheme({
         typography: {
@@ -39,9 +41,12 @@ const Dashboard = () => {
             },
         },
     });
-    
+
     return (
-        <Box sx={{ backgroundColor: '#C6D8C5', height: '100vh' }}>
+        <Box sx={{
+            backgroundColor: '#C6D8C5', height: '100vh', background: `url(${background})`,
+            backgroundSize: 'cover',
+        }}>
             <NavbarDashboard />
             <Container>
                 <Grid>
@@ -52,7 +57,7 @@ const Dashboard = () => {
                                 fontFamily: 'BalooBhaijaan',
                                 fontSize: '100px',
                                 height: '100px',
-                                color: 'Black',
+                                color: 'white',
                                 textAlign: 'center'
                             }}
                         >
@@ -68,18 +73,55 @@ const Dashboard = () => {
                                 padding: '50px'
                             }}
                         >
-                            {user.name}
+                            {/* {user.name} */}
                         </Box>
                     </ThemeProvider>
                 </Grid>
-                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{ paddingTop: '80px' }}>
-                    <Grid xs={6} display="flex" justifyContent="center" alignItems="center">
-                        <Button href='/dashboard/plants'>
+                <Grid container sx={{ paddingTop: '80px' }}>
+                    <Grid item xs={6} 
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}
+                    >
+                        <Button href='/dashboard/plants' variant="contained"
+                            sx={{
+                                fontFamily: 'BalooBhaijaan',
+                                fontSize: '20px',
+                                backgroundColor: '#E8E8E8',
+                                width: '66%',
+                                color: '#00480C',
+                                '&:hover': {
+                                    backgroundColor: '#00480C',
+                                    color: '#FFFFFF'
+                                },
+
+                            }}
+                        >
                             Informasi Tanaman
                         </Button>
                     </Grid>
-                    <Grid xs={6} display="flex" justifyContent="center" alignItems="center">
-                        <Button href='/dashboard/reservoir'>
+                    <Grid item xs={6}
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}
+                    >
+                        <Button href='/dashboard/reservoir' variant="contained"
+                            sx={{
+                                fontFamily: 'BalooBhaijaan',
+                                fontSize: '20px',
+                                backgroundColor: '#E8E8E8',
+                                width: '66%',
+                                color: '#00480C',
+                                '&:hover': {
+                                    backgroundColor: '#00480C',
+                                    color: '#FFFFFF'
+                                },
+                            }}
+                        >
                             Informasi Penyimpanan Air
                         </Button>
                     </Grid>
