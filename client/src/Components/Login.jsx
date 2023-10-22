@@ -135,33 +135,3 @@ const Login = () => {
 };
 
 export default Login;
-
-{/* <form>
-            <FormControl>
-              <InputLabel htmlFor="my-input">Email address</InputLabel>
-              <Input id="my-input" aria-describedby="my-helper-text" />
-              <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
-            </FormControl><br></br>
-            <FormControl>
-              <InputLabel htmlFor="my-input">Password</InputLabel>
-              <Input id="my-input" aria-describedby="my-helper-text" />
-              <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
-            </FormControl><br></br>
-            <Button variant="contained" color="primary" type="submit">
-              Login
-            </Button>
-          </form> */}
-{/* <ThemeProvider theme={theme}>
-        <CssBaseline />
-          <Box
-            sx={{
-              fontFamily: 'BalooBhaijaan',
-              fontSize: '120px',
-              height: '100px',
-              color: 'white',
-              textAlign: 'center'
-            }}
-            >
-            Login
-          </Box>
-        </ThemeProvider> */}
