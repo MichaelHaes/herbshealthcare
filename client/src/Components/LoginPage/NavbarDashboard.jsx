@@ -27,7 +27,7 @@ const NavbarDashboard = () => {
     },
   });
   return (
-    <AppBar position='static' sx={{
+    <AppBar position='Absolute' sx={{
       backgroundColor: '#017414',
     }}>
       <Toolbar position='relative' sx={{ height: 100, left:'-10px', display: 'flex',
