@@ -13,16 +13,16 @@ import BalooBhaijaan from '../../Font/BalooBhaijaan.ttf'
 import Paper from '@mui/material/Paper';
 
 const Dashboard = () => {
-    //sementara
-    // const [user, setUser] = useState([]);
+    const [user, setUser] = useState([]);
 
-    // useEffect(() => {
-    //     axios.get(`http://localhost:5000/login`, { params: })
-    //         .then((res) => {
-    //             const fetchedUsers = res.data;
-    //             setUser(fetchedUsers);
-    //         });
-    // }, []);
+    useEffect(() => {
+        axios.get(`http://localhost:5000/dashboard`)
+            .then((res) => {
+                console.log(res)
+                const fetchedUsers = res.data;
+                setUser(fetchedUsers);
+            });
+    }, []);
     const theme = createTheme({
         typography: {
           fontFamily: 'BalooBhaijaan',
@@ -66,7 +66,7 @@ const Dashboard = () => {
                             padding:'50px'
                             }}
                         >
-                            Username
+                            {user.name}
                         </Box>
                     </ThemeProvider>
                 </Grid>
