@@ -39,7 +39,7 @@ const Login = () => {
       email: formData.email,
       password: formData.password
     };
-    
+
     axios.get(`http://localhost:5000/login`, { params: user })
       .then(res => {
         window.location.href = '/dashboard'
@@ -69,75 +69,68 @@ const Login = () => {
 
 
   return (
-    <div style={{
-      height: '720px',
+    <Box sx={{
+      height: '100vh',
       width: '100%',
       background: `url(${background})`,
       backgroundSize: 'cover',
       backgroundPositionY: '90px'
-
     }}>
       <Navbar />
       <Container sx={{
-        height: '620px',
+        paddingTop: '100px'
       }}>
-        <Grid container spacing={5} sx={{ marginTop: "0px" }} justifyContent={'center'}>
-          <Grid flexDirection={'row'} sx={{ justifyContent: 'center' }}>
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
-              <Box
-                sx={{
-                  fontFamily: 'BalooBhaijaan',
-                  fontSize: '120px',
-                  height: '100px',
-                  color: 'white',
-                  textAlign: 'center'
-                }}
-              >
-                Login
-              </Box>
-            </ThemeProvider>
-            <Paper elevation={3} 
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Box
             sx={{
-                p: 2,
-                borderRadius: 2,
-                bgcolor: 'white',
-                display: 'grid',
-                marginTop: '70px',
-              }}>
-                {/* <form onSubmit={handleSubmit} > */}
-                  <FormControl>
-                    <InputLabel htmlFor="my-input">Email address</InputLabel>
-                    <Input id="my-input" name="email" aria-describedby="my-helper-text" value={formData.email} onChange={handleChange}/>
-                    <FormHelperText id="my-helper-text">@gmail.com</FormHelperText>
-                  </FormControl><br></br>
-                  <FormControl>
-                    <InputLabel htmlFor="my-input">Password</InputLabel>
-                    <Input id="my-input" name="password" aria-describedby="my-helper-text" value={formData.password} onChange={handleChange}/>
-                    <FormHelperText id="my-helper-text">at least 8 letters</FormHelperText>
-                  </FormControl><br></br>
-                  <Button variant="contained" onSubmit={handleSubmit} color="primary" type="submit" sx={{
-                    marginLeft: '90px',
-                    backgroundColor: '#017414',
-                    borderRadius: '10px',
-                    fontSize: '16px',
-                    width: '100px',
-                    marginTop: '20px',
-                    alignItems: 'center',
-                    '&:hover': {
-                      backgroundColor: '#00480C',
-                      color: '#FFFFFF'
-                    },
-                    color: '#FFFFFF'
-                  }}>
-                    Login
-                  </Button>
-                {/* </form> */}
-            </Paper>
-          </Grid>
-        </Grid>
+              fontFamily: 'BalooBhaijaan',
+              fontSize: '120px',
+              height: '100px',
+              color: 'white',
+              textAlign: 'center'
+            }}
+          >
+            Login
+          </Box>
+        </ThemeProvider>
+        <Paper elevation={8}
+          sx={{
+            width: '40%',
+            mx: 'auto',
+            padding: '2rem',
+            borderRadius: 2,
+            bgcolor: 'white',
+            display: 'grid',
+            marginTop: '70px',
+          }}>
+          <FormControl>
+            <InputLabel htmlFor="my-input">Email address</InputLabel>
+            <Input id="my-input" name="email" aria-describedby="my-helper-text" value={formData.email} onChange={handleChange} />
+          </FormControl><br></br>
+          <FormControl>
+            <InputLabel htmlFor="my-input">Password</InputLabel>
+            <Input id="my-input" name="password" aria-describedby="my-helper-text" value={formData.password} onChange={handleChange} />
+          </FormControl><br></br>
+          <Button variant="contained" onClick={handleSubmit} color="primary" type="submit" sx={{
+            mx: 'auto',
+            backgroundColor: '#017414',
+            borderRadius: '10px',
+            fontSize: '16px',
+            width: '100px',
+            marginTop: '20px',
+            alignItems: 'center',
+            '&:hover': {
+              backgroundColor: '#00480C',
+              color: '#FFFFFF'
+            },
+            color: '#FFFFFF'
+          }}>
+            Login
+          </Button>
+        </Paper>
       </Container>
-    </div>
+    </Box>
   );
 };
 
