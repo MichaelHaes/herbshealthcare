@@ -5,7 +5,7 @@ import Login from './Components/Login';
 import Navbar from './Components/LandingPage/Navbar';
 import Dashboard from './Components/LoginPage/Dashboard';
 import Register from './Components/Register';
-import { PlantInformation } from './Components/LoginPage/PlantInformation';
+import PlantInformation from './Components/LoginPage/PlantInformation';
 import { WaterReservoir } from './Components/LoginPage/WaterReservoir';
 import { UserProfile } from './Components/LoginPage/UserProfile';
 import { Device } from './Components/LoginPage/Device';

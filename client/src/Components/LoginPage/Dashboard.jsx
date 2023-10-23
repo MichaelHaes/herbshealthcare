@@ -17,14 +17,14 @@ import background from '../../Assets/landingPage_bg.png'
 const Dashboard = () => {
     const [user, setUser] = useState([]);
 
-    // useEffect(() => {
-    //     axios.get(`http://localhost:5000/dashboard`)
-    //         .then((res) => {
-    //             console.log(res)
-    //             const fetchedUsers = res.data;
-    //             setUser(fetchedUsers);
-    //         });
-    // }, []);
+    useEffect(() => {
+        axios.get(`http://localhost:5000/dashboard`)
+            .then((res) => {
+                console.log(res)
+                const fetchedUsers = res.data;
+                setUser(fetchedUsers);
+            });
+    }, []);
 
     const theme = createTheme({
         typography: {

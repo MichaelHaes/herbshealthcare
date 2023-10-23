@@ -32,13 +32,16 @@ const NavbarDashboard = () => {
     }}>
       <Toolbar position='relative' sx={{ height: 100, left:'-10px', display: 'flex',
         justifyContent: 'space-between' }}>
-        <Box
+        <a href='/dashboard'>
+          <Box
           component='img'
           sx={{
-            width: '100px'
+            width: '85px',
+            marginTop:'10px'
           }}
           src={Logo}
         />
+        </a>
         <Grid>
           <ThemeProvider theme={theme}>
             <CssBaseline />
