@@ -3,6 +3,7 @@ const prisma = new PrismaClient()
 var cors = require("cors");
 const express = require('express')
 const session = require('express-session')
+const bcrypt = require('bcrypt')
 const app = express()
 const port = 5000
  
@@ -14,18 +15,47 @@ app.use(session({
   saveUninitialized: false
 })) 
 
+app.post('/register', async (req, res) => {
+  const saltRounds = 10
+  const { name, email, password, confirm_password } = req.body.user
+  if(password === confirm_password) {
+    bcrypt
+    .genSalt(saltRounds)
+    .then(salt => bcrypt.hash(password, salt))
+    .then(hash => {
+      return prisma.user.create({
+        data: {
+          name,
+          email,
+          password : hash
+        },
+      })
+    })
+    .then(newuser => {
+      res.json(newuser)
+    })
+    .catch(err => console.error(err.message))
+  }
+})
+
 app.get('/login', async (req, res) => {
   try {
     const {email, password} = req.query
-    
     const user = await prisma.user.findUnique({
       where: {
         email: email
       }
     })
-    req.session.user = { id: 1, username: 'example' };
-
-    res.json(user)
+    bcrypt.compare(password, user.password)
+    .then((isMatch) => {
+      if (isMatch) {
+        req.session.user = { id: 1, username: 'example' };
+        res.json(user);
+      } else {
+        res.status(401).json({ error: 'Unauthorized' });
+      }
+    })
+    .catch(err => console.error(err.message))
   } catch (error) {
     console.error('Error in /login route:', error);
     res.status(500).json({ message: 'Internal Server Error' });
@@ -52,18 +82,6 @@ app.get('/device', async (req, res) => {
     }
   })
   res.json(plants)
-})
-
-app.post('/adduser', async (req, res) => {
-  const { name, email, password } = req.body.user
-  const newuser = await prisma.user.create({
-    data: {
-      name,
-      email,
-      password
-    },
-  })
-  res.json(newuser)
 })
 
 app.listen(port, () => {

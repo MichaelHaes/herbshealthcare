@@ -1,12 +1,24 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Navbar from './LandingPage/Navbar';
+import Container from '@mui/material/Container'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import { createTheme, ThemeProvider, MuiCssBaseline } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import BalooBhaijaan from '../Font/BalooBhaijaan.ttf'
+import Paper from '@mui/material/Paper';
+import background from '../Assets/landingPage_bg.png'
+import FormControl from '@mui/material/FormControl';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
 
 const Register = () => {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
     password: '',
+    confirm_password: '',
   });
 
   const handleChange = event => {
@@ -19,15 +31,20 @@ const Register = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
+    
 
     const user = {
-      name: formData.username,
+      name: formData.name,
       email: formData.email,
-      password: formData.password
+      password: formData.password,
+      confirm_password: formData.confirm_password
     };
 
-    axios.post(`http://localhost:5000/adduser`, { user })
+    console.log(user)
+
+    axios.post(`http://localhost:5000/register`, { user })
       .then(res => {
+        window.location.href = '/login'
         console.log(res)
       })
       .catch(error => {
@@ -35,25 +52,93 @@ const Register = () => {
       });
   }
 
+  const theme = createTheme({
+    typography: {
+      fontFamily: 'BalooBhaijaan',
+    },
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: `
+          @font-face {
+            font-family: 'BalooBhaijaan';
+            src: url(${BalooBhaijaan});
+          }
+        `,
+      },
+    },
+  });
+
   return (
-    <div>
-    <Navbar />
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input type="text" name="username" value={formData.username} onChange={handleChange} />
-        </label>
-        <label>
-          Email:
-          <input type="text" name="email" value={formData.email} onChange={handleChange} />
-        </label>
-        <label>
-          Password:
-          <input type="text" name="password" value={formData.password} onChange={handleChange} />
-        </label>
-        <button type="submit">Add</button>
-      </form>
-    </div>
+    <Box sx={{
+      height: '100vh',
+      width: '100%',
+      background: `url(${background})`,
+      backgroundSize: 'cover',
+      backgroundPositionY: '90px'
+    }}>
+      <Navbar />
+      <Container sx={{
+        paddingTop: '100px'
+      }}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Box
+            sx={{
+              fontFamily: 'BalooBhaijaan',
+              fontSize: '120px',
+              height: '100px',
+              color: 'white',
+              textAlign: 'center'
+            }}
+          >
+            Register
+          </Box>
+        </ThemeProvider>
+        <Paper elevation={8}
+          sx={{
+            width: '40%',
+            mx: 'auto',
+            padding: '2rem',
+            borderRadius: 2,
+            bgcolor: 'white',
+            display: 'grid',
+            marginTop: '70px',
+          }}>
+          <FormControl>
+            <InputLabel htmlFor="my-input">Name</InputLabel>
+            <Input id="my-input" name="name" aria-describedby="my-helper-text" value={formData.name} onChange={handleChange} />
+          </FormControl><br></br>
+          <FormControl>
+            <InputLabel htmlFor="my-input">Email address</InputLabel>
+            <Input id="my-input" name="email" aria-describedby="my-helper-text" value={formData.email} onChange={handleChange} />
+          </FormControl><br></br>
+          <FormControl>
+            <InputLabel htmlFor="my-input">Password</InputLabel>
+            <Input id="my-input" name="password" aria-describedby="my-helper-text" value={formData.password} onChange={handleChange} />
+          </FormControl><br></br>
+          <FormControl>
+            <InputLabel htmlFor="my-input">Confirm Password</InputLabel>
+            <Input id="my-input" name="confirm_password" aria-describedby="my-helper-text" value={formData.confirm_password} onChange={handleChange} />
+          </FormControl><br></br>
+          <Button variant="contained" onClick={handleSubmit} color="primary" type="submit" sx={{
+            mx: 'auto',
+            width: '100px',
+            backgroundColor: '#017414',
+            borderRadius: '10px',
+            fontSize: '16px',
+            marginTop: '20px',
+            alignItems: 'center',
+            '&:hover': {
+              backgroundColor: '#00480C',
+              color: '#FFFFFF'
+            },
+            color: '#FFFFFF'
+          }}>
+            Register
+          </Button>
+        </Paper>
+      </Container>
+    </Box>
   );
 };
 

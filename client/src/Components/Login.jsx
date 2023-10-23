@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Navbar from './LandingPage/Navbar';
-import Grid from '@mui/material/Unstable_Grid2'
-import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
-import Logo from '../Assets/herbscare_logo.png'
 import Button from '@mui/material/Button'
 import { createTheme, ThemeProvider, MuiCssBaseline } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -15,8 +12,6 @@ import background from '../Assets/landingPage_bg.png'
 import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
-import FormHelperText from '@mui/material/FormHelperText';
-import TextField from '@mui/material/TextField';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -42,8 +37,8 @@ const Login = () => {
 
     axios.get(`http://localhost:5000/login`, { params: user })
       .then(res => {
-        window.location.href = '/dashboard'
         console.log(res.data)
+        window.location.href = '/dashboard'
       })
       .catch(error => {
         console.error('Error adding user:', error);
@@ -65,8 +60,6 @@ const Login = () => {
       },
     },
   });
-
-
 
   return (
     <Box sx={{
@@ -114,10 +107,10 @@ const Login = () => {
           </FormControl><br></br>
           <Button variant="contained" onClick={handleSubmit} color="primary" type="submit" sx={{
             mx: 'auto',
+            width: '100px',
             backgroundColor: '#017414',
             borderRadius: '10px',
             fontSize: '16px',
-            width: '100px',
             marginTop: '20px',
             alignItems: 'center',
             '&:hover': {
@@ -127,6 +120,11 @@ const Login = () => {
             color: '#FFFFFF'
           }}>
             Login
+          </Button>
+          <Button variant='text' href='/register' sx={{
+            marginTop: '10px'
+          }}>
+            Register
           </Button>
         </Paper>
       </Container>
