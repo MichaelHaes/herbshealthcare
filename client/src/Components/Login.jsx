@@ -35,10 +35,10 @@ const Login = () => {
       password: formData.password
     };
 
-    axios.get(`http://localhost:5000/login`, { params: user })
+    axios.post(`http://localhost:5000/login`, user)
       .then(res => {
-        console.log(res.data)
-        window.location.href = '/dashboard'
+        console.log(res.data.user)
+        // window.location.href = '/dashboard'
       })
       .catch(error => {
         console.error('Error adding user:', error);
