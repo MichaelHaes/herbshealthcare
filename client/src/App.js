@@ -10,9 +10,15 @@ import { WaterReservoir } from './Components/LoginPage/WaterReservoir';
 import { UserProfile } from './Components/LoginPage/UserProfile';
 import { Device } from './Components/LoginPage/Device';
 
+import SocketContext from './SocketContext';
+import {io} from 'socket.io-client'; 
+
+const socket = io('http://localhost:5000');
 
 function App() {
   return (
+    <SocketContext.Provider value={socket}>
+
     <div className="App">
       <BrowserRouter>
         <Routes>
@@ -27,6 +33,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </div>
+    </SocketContext.Provider>
   );
 }
 

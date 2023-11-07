@@ -38,7 +38,7 @@ const Login = () => {
     axios.post(`http://localhost:5000/login`, user)
       .then(res => {
         console.log(res.data.user)
-        // window.location.href = '/dashboard'
+        window.location.href = '/dashboard'
       })
       .catch(error => {
         console.error('Error adding user:', error);
