@@ -6,29 +6,37 @@ const bodyParser = require('body-parser');
 const { createServer } = require("http");
 const bcrypt = require('bcrypt')
 const { Server } = require("socket.io")
-
+const cookieParser = require("cookie-parser")
 const app = express()
 const port = 5000
 const prisma = new PrismaClient()
 const store = new session.MemoryStore()
+
+app.use(cors({
+	origin: 'http://localhost:3000',
+  credentials: true
+}));
+
+app.use(express.json());
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(session({
+  secret: 'herbscare',
+  resave: false,
+  cookie: {
+    maxAge: 600000,
+  },
+  saveUninitialized: true,
+  store
+}))
+
 const server = createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "http://localhost:3000"
   }
 });
-
-app.use(cors());
-app.use(express.json());
-app.use(bodyParser.json());
-app.use(session({
-  secret: 'herbscare',
-  resave: true,
-  cookie: { maxAge: 60000 },
-  saveUninitialized: false,
-  store
-}))
 
 app.use((req, res, next) => {
   // console.log(store)
@@ -78,6 +86,11 @@ app.post('/login', async (req, res) => {
           if (isMatch) {
             req.session.authenticated = true
             req.session.user = user;
+            // res.cookie('sessionID', req.sessionID, {
+            //   maxAge: 30 * 24 * 60 * 60 * 1000,
+            //   httpOnly: true,
+            //   sameSite: 'strict'
+            // });
             res.json(req.session);
           } else {
             res.status(401).json({ error: 'Unauthorized' });
@@ -89,7 +102,6 @@ app.post('/login', async (req, res) => {
 })
 
 app.get('/dashboard', async (req, res) => {
-  console.log(req.session.user)
   const user = req.session.user;
   res.json(user)
 })
@@ -108,7 +120,7 @@ app.post('/makepot', async (req, res) => {
 
   const devices = await prisma.devices.findMany()
   io.emit('newPot', devices);
-  
+
   res.send('new pot is made')
 })
 
@@ -124,7 +136,13 @@ app.get('/device', async (req, res) => {
   res.json(plants)
 })
 
-server.listen(port, () => {
+app.get('/userinformation', async (req, res) => {
+  console.log('Cookies: ', req.session)
+  res.json(req.session.user)
+})
+
+
+app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
 

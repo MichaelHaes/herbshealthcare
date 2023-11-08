@@ -20,7 +20,6 @@ const Dashboard = () => {
     useEffect(() => {
         axios.get(`http://localhost:5000/dashboard`)
             .then((res) => {
-                console.log(res)
                 const fetchedUsers = res.data;
                 setUser(fetchedUsers);
             });
