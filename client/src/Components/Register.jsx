@@ -13,10 +13,12 @@ import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 
-const Login = () => {
+const Register = () => {
   const [formData, setFormData] = useState({
+    username: '',
     email: '',
     password: '',
+    confirm_password: '',
   });
 
   const handleChange = event => {
@@ -29,16 +31,21 @@ const Login = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
+    
 
     const user = {
+      name: formData.name,
       email: formData.email,
-      password: formData.password
+      password: formData.password,
+      confirm_password: formData.confirm_password
     };
 
-    axios.get(`http://localhost:5000/login`, { params: user })
+    console.log(user)
+
+    axios.post(`http://localhost:5000/register`, { user })
       .then(res => {
-        console.log(res.data)
-        window.location.href = '/dashboard'
+        window.location.href = '/login'
+        console.log(res)
       })
       .catch(error => {
         console.error('Error adding user:', error);
@@ -84,7 +91,7 @@ const Login = () => {
               textAlign: 'center'
             }}
           >
-            Login
+            Register
           </Box>
         </ThemeProvider>
         <Paper elevation={8}
@@ -98,12 +105,20 @@ const Login = () => {
             marginTop: '70px',
           }}>
           <FormControl>
+            <InputLabel htmlFor="my-input">Name</InputLabel>
+            <Input id="my-input" name="name" aria-describedby="my-helper-text" value={formData.name} onChange={handleChange} />
+          </FormControl><br></br>
+          <FormControl>
             <InputLabel htmlFor="my-input">Email address</InputLabel>
             <Input id="my-input" name="email" aria-describedby="my-helper-text" value={formData.email} onChange={handleChange} />
           </FormControl><br></br>
           <FormControl>
             <InputLabel htmlFor="my-input">Password</InputLabel>
             <Input id="my-input" name="password" aria-describedby="my-helper-text" value={formData.password} onChange={handleChange} />
+          </FormControl><br></br>
+          <FormControl>
+            <InputLabel htmlFor="my-input">Confirm Password</InputLabel>
+            <Input id="my-input" name="confirm_password" aria-describedby="my-helper-text" value={formData.confirm_password} onChange={handleChange} />
           </FormControl><br></br>
           <Button variant="contained" onClick={handleSubmit} color="primary" type="submit" sx={{
             mx: 'auto',
@@ -119,11 +134,6 @@ const Login = () => {
             },
             color: '#FFFFFF'
           }}>
-            Login
-          </Button>
-          <Button variant='text' href='/register' sx={{
-            marginTop: '10px'
-          }}>
             Register
           </Button>
         </Paper>
@@ -132,4 +142,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

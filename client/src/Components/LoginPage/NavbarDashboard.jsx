@@ -10,7 +10,7 @@ import Khula from '../../Font/Khula.ttf'
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2'
 
-const Navbar = () => {
+const NavbarDashboard = () => {
   const theme = createTheme({
     typography: {
       fontFamily: 'Khula',
@@ -27,11 +27,12 @@ const Navbar = () => {
     },
   });
   return (
-    <AppBar position='absolute' sx={{
+    <AppBar position='Absolute' sx={{
       backgroundColor: '#017414',
     }}>
-      <Toolbar position='relative' sx={{ height: 100, left:'-10px', }}>
-        <a href='/'>
+      <Toolbar position='relative' sx={{ height: 100, left:'-10px', display: 'flex',
+        justifyContent: 'space-between' }}>
+        <a href='/dashboard'>
           <Box
           component='img'
           sx={{
@@ -41,27 +42,23 @@ const Navbar = () => {
           src={Logo}
         />
         </a>
-        <Grid
-          container
-          direction="row"
-          justifyContent="right"
-          sx={{ width:'100%'}}
-        >
-        <ThemeProvider theme={theme}>
+        <Grid>
+          <ThemeProvider theme={theme}>
             <CssBaseline />
-              <Button href="/login" sx={{color:'white', fontSize:'25px', marginTop:'5px', fontFamily: 'BalooBhaijaan',
-              '&:hover': {
+              <Button href="/dashboard/profile" sx={{color:'white', fontSize:'25px', marginTop:'5px', fontFamily: 'BalooBhaijaan', '&:hover': {
                 fontWeight:'bolder'
-              },}}>Login</Button>
+              },}}>Profil</Button>
+              <Button href="/dashboard/plants" sx={{color:'white', fontSize:'25px', marginTop:'5px', fontFamily: 'BalooBhaijaan', '&:hover': {
+                fontWeight:'bolder'
+              },}}>All Plants</Button>
+              <Button href="/dashboard/logout" sx={{color:'white', fontSize:'25px', marginTop:'5px', fontFamily: 'BalooBhaijaan', '&:hover': {
+                fontWeight:'bolder'
+              },}}>Logout</Button>
           </ThemeProvider>
         </Grid>
-          {/* <ThemeProvider theme={theme}>
-            <CssBaseline />
-              <Button href="/login" sx={{color:'white', fontSize:'25px', marginTop:'5px'}}>Login</Button>
-          </ThemeProvider> */}
       </Toolbar>
     </AppBar>
   )
 }
 
-export default Navbar
+export default NavbarDashboard

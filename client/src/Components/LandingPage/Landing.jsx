@@ -3,12 +3,13 @@ import Grid from '@mui/material/Unstable_Grid2'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
-import Logo from '../../Assets/white_logo.png'
+import Logo from '../../Assets/herbscare_logo.png'
 import Button from '@mui/material/Button'
 import { createTheme, ThemeProvider, MuiCssBaseline } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import BalooBhaijaan from '../../Font/BalooBhaijaan.ttf'
 import Paper from '@mui/material/Paper';
+import background from '../../Assets/landingPage_bg.png'
 
 const Landing = () => {
   const theme = createTheme({
@@ -28,7 +29,8 @@ const Landing = () => {
   });
   return (
     <Container sx={{
-      height:'607px',
+      height:'100vh',
+      paddingTop:'100px'
     }}>
       <Grid container spacing={5} sx={{marginTop : "0px"}}>
         <Grid item xs={8} >
@@ -41,7 +43,6 @@ const Landing = () => {
                   fontSize: '120px',
                   height: '100px',
                   color: 'white',
-                  marginLeft: '30px',
                   marginTop: '40px'
                 }}
               >
@@ -51,7 +52,6 @@ const Landing = () => {
                 sx={{
                   fontFamily: 'BalooBhaijaan',
                   fontSize: '30px',
-                  marginLeft: '30px',
                   marginTop: '30px',
                   color: 'white',
                 }}
@@ -62,7 +62,6 @@ const Landing = () => {
               <Typography variant='body1' align='justify'
               sx={{
                   fontSize: '20px',
-                  marginLeft: '30px',
                   marginTop: '25px',
                   color: 'white',
                 }}>
@@ -72,53 +71,74 @@ const Landing = () => {
               the ultimate environment for thriving herbs and optimal health benefits.
               </Typography>
           </Box>
-        </Grid>
-        <Grid item xs={4} >
-          <Box
-            component='img'
-            sx={{
-              width: '100%',
-            }}
-            src={Logo}
-          />
-        </Grid>
-        <Box sx={{ display: 'flex', gap: 3, marginLeft: '50px'}}>
+          <Box sx={{ display: 'flex', gap: 2, marginTop:'20px'}}>
           <Button variant="contained" size='large'
             sx={{
-              backgroundColor: '#8BB19B',
+              fontFamily:'BalooBhaijaan',
+              backgroundColor: '#E8E8E8',
+              display: 'list-item',
+              //opacity:'50%',
+              fontSize:'25px',
+              color: '#00480C',
               '&:hover': {
-                backgroundColor: '#81A38F',
+                backgroundColor: '#FFFFFF',
+                color: '#00480C'
               },
-              color: '#121C16'
+              color: '#00480C'
             }}
           >
-            Get started for free
+            Get started for <br></br><b>FREE</b>
           </Button>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, marginLeft: '30px'}}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2}}>
           <Button href='#section2' variant="contained" size='large'
               sx={{
-                backgroundColor: '#8BB19B',
+                fontFamily:'BalooBhaijaan',
+                backgroundColor: '#E8E8E8',
+                //opacity:'50%',
+                borderRadius:'10px',
+                fontSize:'20px',
+                color: '#00480C',
                 '&:hover': {
-                  backgroundColor: '#81A38F',
+                  backgroundColor: '#FFFFFF',
+                  color: '#00480C'
                 },
-                color: '#121C16'
+                color: '#00480C'
               }}
             >
               Read more about us
             </Button>
             <Button href='#section3' variant="contained" size='large'
               sx={{
-                backgroundColor: '#8BB19B',
+                fontFamily:'BalooBhaijaan',
+                backgroundColor: '#E8E8E8',
+                //opacity:'50%',
+                borderRadius:'10px',
+                fontSize:'20px',
+                width:'400px',
+                color: '#00480C',
                 '&:hover': {
-                  backgroundColor: '#81A38F',
+                  backgroundColor: '#FFFFFF',
+                  color: '#00480C'
                 },
-                color: '#121C16'
+                color: '#00480C'
               }}
             >
               Check out our technology!
             </Button>
           </Box>
         </Box>
+        </Grid>
+        <Grid item xs={4} >
+          <Box
+            component='img'
+            sx={{
+              width: '120%',
+              marginTop:'30px',
+              marginLeft:'30px'
+            }}
+            src={Logo}
+          />
+        </Grid>
       </Grid>
     </Container>
   )
