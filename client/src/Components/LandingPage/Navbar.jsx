@@ -36,7 +36,11 @@ const Navbar = () => {
       paddingLeft: '0'
     }}>
       <Fade>
-      <Container position='relative' sx={{ height: '8vh', display: 'flex', alignItems: 'center' }}>
+      <Container position='relative' sx={{ 
+        height: '8vh', 
+        display: 'flex', 
+        alignItems: 'center' 
+      }}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Box sx={{
