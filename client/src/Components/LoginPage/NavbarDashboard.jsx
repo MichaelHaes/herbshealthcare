@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from 'axios';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -7,7 +8,6 @@ import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider, MuiCssBaseline } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Khula from '../../Font/Khula.ttf'
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2'
 
 const NavbarDashboard = () => {
@@ -26,6 +26,20 @@ const NavbarDashboard = () => {
       },
     },
   });
+
+  const logout = () => {
+    axios.delete("http://localhost:5000/logout", {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      withCredentials: true
+    })
+    .then((res) => {
+      window.location.href =  '/'
+    });
+    
+  }
+
   return (
     <AppBar position='Absolute' sx={{
       backgroundColor: '#017414',
@@ -51,7 +65,7 @@ const NavbarDashboard = () => {
               <Button href="/dashboard/plants" sx={{color:'white', fontSize:'25px', marginTop:'5px', fontFamily: 'BalooBhaijaan', '&:hover': {
                 fontWeight:'bolder'
               },}}>All Plants</Button>
-              <Button href="/dashboard/logout" sx={{color:'white', fontSize:'25px', marginTop:'5px', fontFamily: 'BalooBhaijaan', '&:hover': {
+              <Button onClick={logout} sx={{color:'white', fontSize:'25px', marginTop:'5px', fontFamily: 'BalooBhaijaan', '&:hover': {
                 fontWeight:'bolder'
               },}}>Logout</Button>
           </ThemeProvider>

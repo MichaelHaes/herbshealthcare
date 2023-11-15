@@ -35,13 +35,18 @@ const Login = () => {
       password: formData.password
     };
 
-    axios.get(`http://localhost:5000/login`, { params: user })
+    axios.post(`http://localhost:5000/login`, user, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      withCredentials: true
+    })
       .then(res => {
-        console.log(res.data)
+        console.log(res)
         window.location.href = '/dashboard'
       })
       .catch(error => {
-        console.error('Error adding user:', error);
+        console.error('Error logging in:', error);
       });
   }
 

@@ -70,9 +70,8 @@ const Navbar = () => {
             }}>
               Login
             </Box>
-          </Box>
-        </ThemeProvider>
-      </Container>
+          </ThemeProvider>
+        </Container>
       </Fade>
     </AppBar>
   );
