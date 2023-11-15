@@ -11,7 +11,7 @@ import { UserProfile } from './Components/LoginPage/UserProfile';
 import { Device } from './Components/LoginPage/Device';
 
 import SocketContext from './SocketContext';
-import {io} from 'socket.io-client'; 
+import { io } from 'socket.io-client';
 
 const socket = io('http://localhost:5000');
 
@@ -19,20 +19,20 @@ function App() {
   return (
     <SocketContext.Provider value={socket}>
 
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/plants" element={<PlantInformation />} />
-          <Route path="/dashboard/plants/:id" element={<Device />} />
-          <Route path="/dashboard/reservoir" element={<WaterReservoir />} />
-          <Route path="/dashboard/profile" element={<UserProfile />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+      <div className="App">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/plants" element={<PlantInformation />} />
+            <Route path="/dashboard/plants/:id" element={<Device />} />
+            <Route path="/dashboard/reservoir" element={<WaterReservoir />} />
+            <Route path="/dashboard/profile" element={<UserProfile />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </SocketContext.Provider>
   );
 }

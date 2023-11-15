@@ -22,11 +22,11 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(session({
   secret: 'herbscare',
-  resave: false,
+  resave: true,
   cookie: {
     maxAge: 600000,
   },
-  saveUninitialized: true,
+  saveUninitialized: false,
   store
 }))
 
@@ -39,12 +39,12 @@ const io = new Server(server, {
 });
 
 app.use((req, res, next) => {
-  // console.log(store)
+  console.log(store)
   next();
 })
 
 io.on('connection', (socket) => {
-  console.log("Connection on: " + socket.id)
+  // console.log("Connection on: " + socket.id)
 })
 
 app.post('/register', async (req, res) => {
@@ -141,8 +141,13 @@ app.get('/userinformation', async (req, res) => {
   res.json(req.session.user)
 })
 
+app.delete('/logout', async (req, res) => {
+  req.session.destroy()
+  console.log('logging out on ', req.sessionID)
+  res.sendStatus(200)
+})
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
 

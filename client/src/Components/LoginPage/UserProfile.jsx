@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Box } from '@mui/material'
 import NavbarDashboard from './NavbarDashboard'
 import Container from '@mui/material/Container'
+import {Typography} from '@mui/material'
 
 export const UserProfile = () => {
   const [user, setUser] = useState([])
@@ -21,7 +22,9 @@ export const UserProfile = () => {
     <Box>
       <NavbarDashboard />
       <Container>
-        
+        <Typography>Name: {user.name}</Typography>
+        <Typography>Email: {user.email}</Typography>
+        <Typography>Created At: {user.createdAt}</Typography>
       </Container>
     </Box>
   )
