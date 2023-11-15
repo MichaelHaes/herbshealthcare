@@ -74,7 +74,7 @@ const Landing = () => {
           <Box sx={{ display: 'flex', gap: 2, marginTop: '20px', justifyContent: 'center', flexDirection: 'column', marginTop: '10vh' }}>
             <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, justifyContent: 'center' }}>
               <Fade duration={500} delay={1000}>
-              <Button href='#section2' onclick='' variant="contained" size='large'
+              <Box href='#section2' onclick='' variant="contained" size='large'
                 sx={{
                   fontFamily: 'Jaldi',
                   borderRadius: '10px',
@@ -82,19 +82,26 @@ const Landing = () => {
                   backgroundColor: 'rgba(0, 0, 0, 0.3)',
                   border: '1px solid white',
                   width: '15vw',
+                  height:'7.8vh',
                   color: 'white',
+                  display: 'flex',
+                  alignItems:'center',
+                  justifyContent:'center',
                   '&:hover': {
                     color: 'white',
                     backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                    cursor: 'pointer',
                     transition: 'background-color 1s, color 1s',
                   },
+                }} onClick={() => {
+                  window.location.href = '#section2';
                 }}
               >
                 About Us
-              </Button>
+              </Box>
               </Fade>
               <Fade duration={500} delay={1500}>
-              <Button href='#section3' variant="contained" size='large'
+              <Box href='#section3' variant="contained" size='large'
                 sx={{
                   fontFamily: 'Jaldi',
                   borderRadius: '10px',
@@ -102,21 +109,28 @@ const Landing = () => {
                   backgroundColor: 'rgba(0, 0, 0, 0.3)',
                   border: '1px solid white',
                   width: '15vw',
+                  height:'7.8vh',
                   color: 'white',
+                  display: 'flex',
+                  alignItems:'center',
+                  justifyContent:'center',
                   '&:hover': {
                     color: 'white',
+                    cursor: 'pointer',
                     backgroundColor: 'rgba(255, 255, 255, 0.3)',
                     transition: 'background-color 1s, color 1s',
                   },
+                }} onClick={() => {
+                  window.location.href = '#section3';
                 }}
               >
                 Our Technology
-              </Button>
+              </Box>
               </Fade>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, justifyContent: 'center' }}>
               <Fade duration={500} delay={2000}>
-              <Button variant="contained" size='large'
+              <Box variant="contained" size='large'
                 sx={{
                   fontFamily: 'Jaldi',
                   backgroundColor: '#000000',
@@ -126,15 +140,20 @@ const Landing = () => {
                   border: '1px solid white',
                   borderRadius: '10px',
                   width: '31vw',
+                  height:'7.8vh',
+                  display: 'flex',
+                  alignItems:'center',
+                  justifyContent:'center',
                   '&:hover': {
                     color: 'white',
                     backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                    cursor: 'pointer',
                     transition: 'background-color 1s, color 1s',
                   },
                 }}
               >
                 Get started for Free
-              </Button>
+              </Box>
               </Fade>
             </Box>
           </Box>

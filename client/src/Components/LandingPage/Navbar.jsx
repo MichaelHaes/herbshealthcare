@@ -52,10 +52,12 @@ const Navbar = () => {
                 fontWeight: 'bolder',
                 cursor: 'pointer'
               },
+            }} onClick={() => {
+              window.location.href = '/';
             }}>
               Herbs Care.
             </Box>
-            <Box href="/login" sx={{
+            <Box sx={{
               color: 'white',
               fontSize: '25px',
               fontFamily: 'Jaldi',
@@ -63,6 +65,8 @@ const Navbar = () => {
                 fontWeight: 'bolder',
                 cursor: 'Pointer'
               },
+            }} onClick={() => {
+              window.location.href = '/login';
             }}>
               Login
             </Box>
