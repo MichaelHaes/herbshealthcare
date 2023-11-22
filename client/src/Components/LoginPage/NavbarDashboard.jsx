@@ -38,7 +38,7 @@ const NavbarDashboard = () => {
       <Container position='relative' sx={{ 
         height: '8vh', 
         display: 'flex', 
-        alignItems: 'center' 
+        //alignItems: 'center' 
       }}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
@@ -58,17 +58,41 @@ const NavbarDashboard = () => {
             }}>
               Herbs Care.
             </Box>
-            <Box href="/dashboard/plant" 
-              sx={{
-                color: 'white',
-                fontSize: '25px',
-                fontFamily: 'Jaldi',
-                '&:hover': {
-                  fontWeight: 'bolder',
-                  cursor: 'Pointer'
-                },
-              }}>
-              All Plant
+            <Box sx={{display:'flex', gap:3}}>
+              <Box href="/dashboard/plant" 
+                sx={{
+                  color: 'white',
+                  fontSize: '25px',
+                  fontFamily: 'Jaldi',
+                  '&:hover': {
+                    fontWeight: 'bolder',
+                    cursor: 'Pointer'
+                  },
+                }}>
+                All Plant
+              </Box>
+              <Box href="/dashboard/profile"
+                sx={{
+                  color: 'white',
+                  fontSize: '25px',
+                  fontFamily: 'Jaldi',
+                  '&:hover': {
+                    fontWeight: 'bolder',
+                    cursor: 'Pointer'
+                  },
+                }}>Profil</Box>
+              <Box href="/dashboard/plant" 
+                sx={{
+                  color: 'white',
+                  fontSize: '25px',
+                  fontFamily: 'Jaldi',
+                  '&:hover': {
+                    fontWeight: 'bolder',
+                    cursor: 'Pointer'
+                  },
+                }}>
+                Log Out
+              </Box>
             </Box>
           </Box>
         </ThemeProvider>
