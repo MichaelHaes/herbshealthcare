@@ -1,4 +1,5 @@
 import React from 'react'
+import * as React from 'react';
 import { Card, CardContent, CardMedia, CardActionArea } from '@mui/material'
 import Typography from '@mui/material/Typography'
 import Logo from '../Assets/card_logo.png'
