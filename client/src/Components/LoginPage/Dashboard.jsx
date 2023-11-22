@@ -20,11 +20,11 @@ const Dashboard = () => {
     const [user, setUser] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/dashboard`)
-            .then((res) => {
-                const fetchedUsers = res.data;
-                setUser(fetchedUsers);
-            });
+        // axios.get(`http://localhost:5000/dashboard`)
+        //     .then((res) => {
+        //         const fetchedUsers = res.data;
+        //         setUser(fetchedUsers);
+        //     });
     }, []);
 
     const theme = createTheme({

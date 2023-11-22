@@ -6,31 +6,78 @@ import Logo from '../../Assets/white_logo.png';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider, MuiCssBaseline } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import Khula from '../../Font/Khula.ttf'
+import Jaldi from '../../Font/Jaldi-Regular.ttf'
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2'
+import { Container } from '@mui/system';
+import { Fade } from 'react-reveal';
 
 const NavbarDashboard = () => {
   const theme = createTheme({
     typography: {
-      fontFamily: 'Khula',
+      fontFamily: 'Jaldi',
     },
     components: {
       MuiCssBaseline: {
         styleOverrides: `
           @font-face {
-            font-family: 'Khula';
-            src: url(${Khula});
+            font-family: 'Jaldi';
+            src: url(${Jaldi});
           }
         `,
       },
     },
   });
   return (
-    <AppBar position='Absolute' sx={{
-      backgroundColor: '#017414',
+    <AppBar position='absolute' sx={{
+      background: 'none',
+      boxShadow: 'none',
+      paddingLeft: '0'
     }}>
-      <Toolbar position='relative' sx={{ height: 100, left:'-10px', display: 'flex',
+      <Fade>
+      <Container position='relative' sx={{ 
+        height: '8vh', 
+        display: 'flex', 
+        alignItems: 'center' 
+      }}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Box sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            width: '100%',
+          }}>
+            <Box href="/" sx={{
+              color: 'white',
+              fontSize: '25px',
+              fontFamily: 'Jaldi',
+              '&:hover': {
+                fontWeight: 'bolder',
+                cursor: 'pointer'
+              },
+            }}>
+              Herbs Care.
+            </Box>
+            <Box href="/dashboard/plant" 
+              sx={{
+                color: 'white',
+                fontSize: '25px',
+                fontFamily: 'Jaldi',
+                '&:hover': {
+                  fontWeight: 'bolder',
+                  cursor: 'Pointer'
+                },
+              }}>
+              All Plant
+            </Box>
+          </Box>
+        </ThemeProvider>
+      </Container>
+      </Fade>
+      {/* <Toolbar position='relative' sx={{ 
+        height: 100, 
+        left:'-10px', 
+        display: 'flex',
         justifyContent: 'space-between' }}>
         <a href='/dashboard'>
           <Box
@@ -45,18 +92,33 @@ const NavbarDashboard = () => {
         <Grid>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-              <Button href="/dashboard/profile" sx={{color:'white', fontSize:'25px', marginTop:'5px', fontFamily: 'BalooBhaijaan', '&:hover': {
-                fontWeight:'bolder'
+              <Button href="/dashboard/profile" sx={{
+                color:'white', 
+                fontSize:'25px', 
+                marginTop:'5px', 
+                fontFamily: 'BalooBhaijaan', 
+                '&:hover': {
+                  fontWeight:'bolder'
               },}}>Profil</Button>
-              <Button href="/dashboard/plants" sx={{color:'white', fontSize:'25px', marginTop:'5px', fontFamily: 'BalooBhaijaan', '&:hover': {
-                fontWeight:'bolder'
+              <Button href="/dashboard/plants" sx={{
+                color:'white', 
+                fontSize:'25px', 
+                marginTop:'5px', 
+                fontFamily: 'BalooBhaijaan', 
+                '&:hover': {
+                  fontWeight:'bolder'
               },}}>All Plants</Button>
-              <Button href="/dashboard/logout" sx={{color:'white', fontSize:'25px', marginTop:'5px', fontFamily: 'BalooBhaijaan', '&:hover': {
-                fontWeight:'bolder'
+              <Button href="/dashboard/logout" sx={{
+                color:'white', 
+                fontSize:'25px', 
+                marginTop:'5px', 
+                fontFamily: 'BalooBhaijaan', 
+                '&:hover': {
+                  fontWeight:'bolder'
               },}}>Logout</Button>
           </ThemeProvider>
         </Grid>
-      </Toolbar>
+      </Toolbar> */}
     </AppBar>
   )
 }
