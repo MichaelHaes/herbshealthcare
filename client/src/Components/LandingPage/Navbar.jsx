@@ -36,11 +36,7 @@ const Navbar = () => {
       paddingLeft: '0'
     }}>
       <Fade>
-      <Container position='relative' sx={{ 
-        height: '8vh', 
-        display: 'flex', 
-        alignItems: 'center' 
-      }}>
+      <Container position='relative' sx={{ height: '8vh', display: 'flex', alignItems: 'center' }}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Box sx={{
@@ -56,10 +52,12 @@ const Navbar = () => {
                 fontWeight: 'bolder',
                 cursor: 'pointer'
               },
+            }} onClick={() => {
+              window.location.href = '/';
             }}>
               Herbs Care.
             </Box>
-            <Box href="/login" sx={{
+            <Box sx={{
               color: 'white',
               fontSize: '25px',
               fontFamily: 'Jaldi',
@@ -67,12 +65,13 @@ const Navbar = () => {
                 fontWeight: 'bolder',
                 cursor: 'Pointer'
               },
+            }} onClick={() => {
+              window.location.href = '/login';
             }}>
               Login
             </Box>
-          </Box>
-        </ThemeProvider>
-      </Container>
+          </ThemeProvider>
+        </Container>
       </Fade>
     </AppBar>
   );
