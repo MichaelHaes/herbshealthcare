@@ -36,39 +36,43 @@ const Navbar = () => {
       paddingLeft: '0'
     }}>
       <Fade>
-        <Container position='relative' sx={{ height: '8vh', display: 'flex', alignItems: 'center' }}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Box sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              width: '100%',
+      <Container position='relative' sx={{ 
+        height: '8vh', 
+        display: 'flex', 
+        alignItems: 'center' 
+      }}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Box sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            width: '100%',
+          }}>
+            <Box href="/" sx={{
+              color: 'white',
+              fontSize: '25px',
+              fontFamily: 'Jaldi',
+              '&:hover': {
+                fontWeight: 'bolder',
+                cursor: 'pointer'
+              },
             }}>
-              <Box href="/" sx={{
-                color: 'white',
-                fontSize: '25px',
-                fontFamily: 'Jaldi',
-                '&:hover': {
-                  fontWeight: 'bolder',
-                  cursor: 'pointer'
-                },
-              }}>
-                Herbs Care.
-              </Box>
-              <Button href="/login" sx={{
-                color: 'white',
-                fontSize: '25px',
-                fontFamily: 'Jaldi',
-                '&:hover': {
-                  fontWeight: 'bolder',
-                  cursor: 'Pointer'
-                },
-              }}>
-                Login
-              </Button>
+              Herbs Care.
             </Box>
-          </ThemeProvider>
-        </Container>
+            <Box href="/login" sx={{
+              color: 'white',
+              fontSize: '25px',
+              fontFamily: 'Jaldi',
+              '&:hover': {
+                fontWeight: 'bolder',
+                cursor: 'Pointer'
+              },
+            }}>
+              Login
+            </Box>
+          </Box>
+        </ThemeProvider>
+      </Container>
       </Fade>
     </AppBar>
   );

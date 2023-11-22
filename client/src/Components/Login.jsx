@@ -6,12 +6,13 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import { createTheme, ThemeProvider, MuiCssBaseline } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import BalooBhaijaan from '../Font/BalooBhaijaan.ttf'
+import Jaldi from '../Font/Jaldi-Regular.ttf'
 import Paper from '@mui/material/Paper';
-import background from '../Assets/landingPage_bg.png'
+import background from '../Assets/LP_background.png'
 import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
+
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -35,6 +36,12 @@ const Login = () => {
       password: formData.password
     };
 
+    const underline = createTheme({
+      palette: {
+        primary: 'white',
+      },
+    });
+
     axios.post(`http://localhost:5000/login`, user, {
       headers: {
         'Content-Type': 'application/json'
@@ -52,14 +59,14 @@ const Login = () => {
 
   const theme = createTheme({
     typography: {
-      fontFamily: 'BalooBhaijaan',
+      fontFamily: 'Jaldi',
     },
     components: {
       MuiCssBaseline: {
         styleOverrides: `
           @font-face {
-            font-family: 'BalooBhaijaan';
-            src: url(${BalooBhaijaan});
+            font-family: 'Jaldi';
+            src: url(${Jaldi});
           }
         `,
       },
@@ -69,10 +76,8 @@ const Login = () => {
   return (
     <Box sx={{
       height: '100vh',
-      width: '100%',
       background: `url(${background})`,
-      backgroundSize: 'cover',
-      backgroundPositionY: '90px'
+      backgroundSize: 'cover', 
     }}>
       <Navbar />
       <Container sx={{
@@ -82,7 +87,7 @@ const Login = () => {
           <CssBaseline />
           <Box
             sx={{
-              fontFamily: 'BalooBhaijaan',
+              fontFamily: 'Jaldi',
               fontSize: '120px',
               height: '100px',
               color: 'white',
@@ -98,36 +103,55 @@ const Login = () => {
             mx: 'auto',
             padding: '2rem',
             borderRadius: 2,
-            bgcolor: 'white',
+            border: '1px solid white',
+            bgcolor: 'rgba(0, 0, 0, 0.5)',
             display: 'grid',
             marginTop: '70px',
           }}>
-          <FormControl>
-            <InputLabel htmlFor="my-input">Email address</InputLabel>
-            <Input id="my-input" name="email" aria-describedby="my-helper-text" value={formData.email} onChange={handleChange} />
-          </FormControl><br></br>
-          <FormControl>
-            <InputLabel htmlFor="my-input">Password</InputLabel>
-            <Input id="my-input" name="password" aria-describedby="my-helper-text" value={formData.password} onChange={handleChange} />
-          </FormControl><br></br>
+          <ThemeProvider theme={theme}>
+            <FormControl>
+              <InputLabel htmlFor="my-input" sx={{color:'white'}}>Email address</InputLabel>
+              <Input id="my-input" name="email" aria-describedby="my-helper-text" value={formData.email} onChange={handleChange} />
+            </FormControl><br></br>
+            <FormControl>
+              <InputLabel htmlFor="my-input" sx={{color:'white'}}>Password</InputLabel>
+              <Input id="my-input" name="password" aria-describedby="my-helper-text" value={formData.password} onChange={handleChange} />
+            </FormControl><br></br>
+          </ThemeProvider>
           <Button variant="contained" onClick={handleSubmit} color="primary" type="submit" sx={{
             mx: 'auto',
             width: '100px',
-            backgroundColor: '#017414',
+            backgroundColor: 'rgba(0, 0, 0, 0.3)',
             borderRadius: '10px',
+            border: '1px solid white',
             fontSize: '16px',
             marginTop: '20px',
             alignItems: 'center',
             '&:hover': {
-              backgroundColor: '#00480C',
-              color: '#FFFFFF'
+              color: 'white',
+              backgroundColor: 'rgba(255, 255, 255, 0.3)',
+              transition: 'background-color 1s, color 1s',
             },
             color: '#FFFFFF'
           }}>
             Login
           </Button>
           <Button variant='text' href='/register' sx={{
-            marginTop: '10px'
+            marginTop: '10px',
+            mx: 'auto',
+            width: '100px',
+            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+            borderRadius: '10px',
+            border: '1px solid white',
+            fontSize: '16px',
+            marginTop: '20px',
+            alignItems: 'center',
+            '&:hover': {
+              color: 'white',
+              backgroundColor: 'rgba(255, 255, 255, 0.3)',
+              transition: 'background-color 1s, color 1s',
+            },
+            color: '#FFFFFF'
           }}>
             Register
           </Button>
