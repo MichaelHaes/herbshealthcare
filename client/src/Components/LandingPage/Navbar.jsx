@@ -36,39 +36,40 @@ const Navbar = () => {
       paddingLeft: '0'
     }}>
       <Fade>
-      <Container position='relative' sx={{ height: '8vh', display: 'flex', alignItems: 'center' }}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Box sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            width: '100%',
-          }}>
-            <Box href="/" sx={{
-              color: 'white',
-              fontSize: '25px',
-              fontFamily: 'Jaldi',
-              '&:hover': {
-                fontWeight: 'bolder',
-                cursor: 'pointer'
-              },
-            }} onClick={() => {
-              window.location.href = '/';
-            }}>
-              Herbs Care.
-            </Box>
+        <Container position='relative' sx={{ height: '8vh', display: 'flex', alignItems: 'center' }}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
             <Box sx={{
-              color: 'white',
-              fontSize: '25px',
-              fontFamily: 'Jaldi',
-              '&:hover': {
-                fontWeight: 'bolder',
-                cursor: 'Pointer'
-              },
-            }} onClick={() => {
-              window.location.href = '/login';
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%',
             }}>
-              Login
+              <Box href="/" sx={{
+                color: 'white',
+                fontSize: '25px',
+                fontFamily: 'Jaldi',
+                '&:hover': {
+                  fontWeight: 'bolder',
+                  cursor: 'pointer'
+                },
+              }} onClick={() => {
+                window.location.href = '/';
+              }}>
+                Herbs Care.
+              </Box>
+              <Box sx={{
+                color: 'white',
+                fontSize: '25px',
+                fontFamily: 'Jaldi',
+                '&:hover': {
+                  fontWeight: 'bolder',
+                  cursor: 'Pointer'
+                },
+              }} onClick={() => {
+                window.location.href = '/login';
+              }}>
+                Login
+              </Box>
             </Box>
           </Box>
           </ThemeProvider>

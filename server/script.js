@@ -13,7 +13,7 @@ const prisma = new PrismaClient()
 const store = new session.MemoryStore()
 
 app.use(cors({
-	origin: 'http://localhost:3000',
+  origin: 'http://localhost:3000',
   credentials: true
 }));
 
@@ -74,29 +74,27 @@ app.post('/login', async (req, res) => {
   const { email, password } = req.body
   if (email && password) {
     if (req.session.authenticated) {
-      res.json(req.session)
+      res.status(200).json(req.session)
     } else {
       const user = await prisma.user.findUnique({
         where: {
           email: email
         }
       })
-      bcrypt.compare(password, user.password)
-        .then((isMatch) => {
-          if (isMatch) {
-            req.session.authenticated = true
-            req.session.user = user;
-            // res.cookie('sessionID', req.sessionID, {
-            //   maxAge: 30 * 24 * 60 * 60 * 1000,
-            //   httpOnly: true,
-            //   sameSite: 'strict'
-            // });
-            res.json(req.session);
-          } else {
-            res.status(401).json({ error: 'Unauthorized' });
-          }
-        })
-        .catch(err => console.error(err.message))
+      if (user === null) res.status(401).json({ error: 'User not found' })
+      else {
+        bcrypt.compare(password, user.password)
+          .then((isMatch) => {
+            if (isMatch) {
+              req.session.authenticated = true
+              req.session.user = user;
+              res.status(200).json(req.session);
+            } else {
+              res.status(401).json({ error: 'Unauthorized' });
+            }
+          })
+          .catch(err => console.error(err.message))
+      }
     }
   }
 })

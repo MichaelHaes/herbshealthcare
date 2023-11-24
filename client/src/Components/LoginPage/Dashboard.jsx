@@ -11,49 +11,61 @@ import { createTheme, ThemeProvider, MuiCssBaseline } from '@mui/material/styles
 import CssBaseline from '@mui/material/CssBaseline';
 import BalooBhaijaan from '../../Font/BalooBhaijaan.ttf'
 import Paper from '@mui/material/Paper';
-import background from '../../Assets/landingPage_bg.png'
+import background from '../../Assets/LP_background.png'
+import Jaldi from '../../Font/Jaldi-Regular.ttf';
+import { Fade } from 'react-reveal';
 
 
 const Dashboard = () => {
     const [user, setUser] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/dashboard`)
-            .then((res) => {
-                const fetchedUsers = res.data;
-                setUser(fetchedUsers);
-            });
+        // axios.get(`http://localhost:5000/dashboard`)
+        //     .then((res) => {
+        //         const fetchedUsers = res.data;
+        //         setUser(fetchedUsers);
+        //     });
     }, []);
 
     const theme = createTheme({
         typography: {
-            fontFamily: 'BalooBhaijaan',
+          fontFamily: 'Jaldi',
         },
         components: {
-            MuiCssBaseline: {
-                styleOverrides: `
-              @font-face {
-                font-family: 'BalooBhaijaan';
-                src: url(${BalooBhaijaan});
-              }
-            `,
-            },
+          MuiCssBaseline: {
+            styleOverrides: `
+                @font-face {
+                  font-family: 'Jaldi';
+                  src: url(${Jaldi});
+                }
+              `,
+          },
         },
     });
 
     return (
+        
         <Box sx={{
-            backgroundColor: '#C6D8C5', height: '100vh', background: `url(${background})`,
+            backgroundColor: '#C6D8C5', 
+            height: '100vh', 
+            background: `url(${background})`,
             backgroundSize: 'cover',
         }}>
             <NavbarDashboard />
             <Container>
-                <Grid>
+                <Grid container spacing ={5}
+                sx={{
+                    marginTop: '10vh', 
+                    flexDirection: 'column', 
+                    alignContent: 'center', 
+                    marginTop: '-2vh' 
+                }}>
                     <ThemeProvider theme={theme}>
                         <CssBaseline />
                         <Box
                             sx={{
-                                fontFamily: 'BalooBhaijaan',
+                                marginTop: "70px",
+                                fontFamily: 'Jaldi',
                                 fontSize: '100px',
                                 height: '100px',
                                 color: 'white',
@@ -64,7 +76,7 @@ const Dashboard = () => {
                         </Box>
                         <Box
                             sx={{
-                                fontFamily: 'BalooBhaijaan',
+                                fontFamily: 'Jaldi',
                                 fontSize: '60px',
                                 height: '100px',
                                 color: 'Black',
@@ -86,14 +98,17 @@ const Dashboard = () => {
                     >
                         <Button href='/dashboard/plants' variant="contained"
                             sx={{
-                                fontFamily: 'BalooBhaijaan',
+                                fontFamily: 'Jaldi',
+                                borderRadius: '10px',
+                                border: '1px solid white',
                                 fontSize: '20px',
-                                backgroundColor: '#E8E8E8',
+                                backgroundColor: 'rgba(0, 0, 0, 0.3)',
                                 width: '66%',
-                                color: '#00480C',
+                                color: 'white',
                                 '&:hover': {
-                                    backgroundColor: '#00480C',
-                                    color: '#FFFFFF'
+                                    color: 'white',
+                                    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                                    transition: 'background-color 1s, color 1s',
                                 },
 
                             }}
@@ -110,15 +125,19 @@ const Dashboard = () => {
                     >
                         <Button href='/dashboard/reservoir' variant="contained"
                             sx={{
-                                fontFamily: 'BalooBhaijaan',
+                                fontFamily: 'Jaldi',
+                                borderRadius: '10px',
+                                border: '1px solid white',
                                 fontSize: '20px',
-                                backgroundColor: '#E8E8E8',
+                                backgroundColor: 'rgba(0, 0, 0, 0.3)',
                                 width: '66%',
-                                color: '#00480C',
+                                color: 'white',
                                 '&:hover': {
-                                    backgroundColor: '#00480C',
-                                    color: '#FFFFFF'
+                                    color: 'white',
+                                    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                                    transition: 'background-color 1s, color 1s',
                                 },
+
                             }}
                         >
                             Informasi Penyimpanan Air

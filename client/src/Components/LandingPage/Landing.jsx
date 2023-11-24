@@ -8,7 +8,7 @@ import { createTheme, ThemeProvider, MuiCssBaseline } from '@mui/material/styles
 import CssBaseline from '@mui/material/CssBaseline';
 import Jaldi from '../../Font/Jaldi-Regular.ttf';
 import { Fade } from 'react-reveal';
-import background from '../../Assets/landingPage_bg.png';
+
 
 const Landing = () => {
   const theme = createTheme({
@@ -51,7 +51,13 @@ const Landing = () => {
         alignItems: 'center',
       }}
     >
-      <Grid container spacing={5} sx={{ marginTop: '10vh', flexDirection: 'column', alignContent: 'center', marginTop: '-2vh' }}>
+      <Grid container spacing={5} 
+        sx={{ 
+          marginTop: '10vh', 
+          flexDirection: 'column', 
+          alignContent: 'center', 
+          marginTop: '-2vh' 
+        }}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
             <Fade left duration={500}>
@@ -85,8 +91,22 @@ const Landing = () => {
           </Typography>
           </Fade>
         </ThemeProvider>
-          <Box sx={{ display: 'flex', gap: 2, marginTop: '20px', justifyContent: 'center', flexDirection: 'column', marginTop: '10vh' }}>
-            <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, justifyContent: 'center' }}>
+          <Box 
+            sx={{ 
+              display: 'flex', 
+              gap: 2, 
+              marginTop: '20px', 
+              justifyContent: 'center', 
+              flexDirection: 'column', 
+              marginTop: '10vh' 
+            }}>
+            <Box 
+              sx={{ 
+                display: 'flex', 
+                flexDirection: 'row', 
+                gap: 2, 
+                justifyContent: 'center' 
+              }}>
               <Fade duration={500} delay={1000}>
               <Box href='#section2' onclick='' variant="contained" size='large'
                 sx={{
@@ -142,7 +162,13 @@ const Landing = () => {
               </Box>
               </Fade>
             </Box>
-            <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, justifyContent: 'center' }}>
+            <Box 
+              sx={{ 
+                display: 'flex', 
+                flexDirection: 'row', 
+                gap: 2, 
+                justifyContent: 'center' 
+              }}>
               <Fade duration={500} delay={2000}>
               <Box variant="contained" size='large'
                 sx={{
