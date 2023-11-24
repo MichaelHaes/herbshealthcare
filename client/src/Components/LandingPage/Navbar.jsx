@@ -70,6 +70,7 @@ const Navbar = () => {
             }}>
               Login
             </Box>
+          </Box>
           </ThemeProvider>
         </Container>
       </Fade>

@@ -6,20 +6,21 @@ import { Button, ButtonGroup } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { createTheme, ThemeProvider, MuiCssBaseline } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import BalooBhaijaan from '../../Font/BalooBhaijaan.ttf'
-import background from '../../Assets/Group 2.png'
+import Jaldi from '../../Font/Jaldi-Regular.ttf';
+import Box from '@mui/material/Box';
+import EmbeddedSystem from '../../Assets/embeddedSystem.png';
 
 const AboutUs = () => {
     const theme = createTheme({
         typography: {
-          fontFamily: 'BalooBhaijaan',
+          fontFamily: 'Jaldi',
         },
         components: {
           MuiCssBaseline: {
             styleOverrides: `
               @font-face {
-                font-family: 'BalooBhaijaan';
-                src: url(${BalooBhaijaan});
+                font-family: 'Jaldi';
+                src: url(${Jaldi});
               }
             `,
           },
@@ -41,9 +42,59 @@ const AboutUs = () => {
     return (
         <Container sx={{
             height: '100vh',
-            textAlign: 'center',
+            paddingTop:'5vh'
         }}>
             <Grid sx={{
+                display:'flex',
+                flexDirection: 'row',
+                justifyContent: 'center'
+            }}>
+                <Grid sx={{
+                    display:'flex',
+                    flexDirection:'column',
+                }}>
+                    <ThemeProvider theme={theme}>
+                        <CssBaseline />
+                        <Typography sx={{
+                            fontWeight:'bold',
+                            fontSize:'6vmax',
+                            display:'flex',
+                            justifyContent:'center'
+                            }}>
+                            Herbs Care
+                        </Typography>
+                    </ThemeProvider>
+                    <ThemeProvider theme={theme}>
+                        <CssBaseline />
+                        <Typography sx={{
+                            fontSize:'1.7vmax',
+                            display:'flex',
+                            justifyContent:'center',
+                            textAlign:'center',
+                            flexDirection:'column'
+                        }}>
+                            Herbs Health Care System is revolutionizing the way we nurture our 
+                            precious herbs that integrates an embedded system, 
+                            auto-watering feature, and advanced LED light control to 
+                            create the ultimate environment for thriving herbs and 
+                            optimal health benefits.
+                        </Typography>
+                    </ThemeProvider>
+                    <Grid sx={{
+                        display:'flex',
+                        flexDirection:'column'
+                        }}>
+                        <Box sx={{
+                            paddingTop: '10vh',
+                            width: '15vw',
+                            margin: 'auto',
+                            }}>
+                            <img src={EmbeddedSystem} alt="Embedded System" style={{ width: '100%', height: 'auto' }} />
+                        </Box>
+                    </Grid>
+                </Grid>
+            </Grid>
+            {/* <Grid sx={{
                 paddingTop:'40px',
             }}>
             <ThemeProvider theme={theme}>
@@ -130,7 +181,7 @@ const AboutUs = () => {
                 }}>
                     {desc[button]}
                 </Card>
-            </Grid>
+            </Grid> */}
         </Container>
     )
 }
