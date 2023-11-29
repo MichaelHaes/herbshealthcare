@@ -16,12 +16,12 @@ const PlantInformation = () => {
   const [devices, setDevices] = useState([]);
 
   useEffect(() => { 
-    // axios.get(`http://localhost:5000/plantsinformation`)
-    //   .then((res) => {
-    //     console.log(res)
-    //     const devices = res.data;
-    //     setDevices(devices);
-    //   });
+    axios.get(`http://localhost:5000/plantsinformation`)
+      .then((res) => {
+        console.log(res)
+        const devices = res.data;
+        setDevices(devices);
+      });
   }, []);
 
   useEffect(() => {
@@ -37,10 +37,12 @@ const PlantInformation = () => {
   const makePot = () => {
     socket.emit('addPot', 'new pot is added')
 
-    // axios.post(`http://localhost:5000/makepot`)
-    //   .then((res) => {
-    //     console.log(res)
-    //   });
+    axios.post(`http://localhost:5000/makepot`, {}, {
+      withCredentials: true
+    })
+      .then((res) => {
+        console.log(res)
+      });
   }
 
   return (
@@ -57,7 +59,7 @@ const PlantInformation = () => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            marginTop: '10px',
+            marginTop: '100px',
             fontFamily: 'Jaldi',
             width: '50%',
             backgroundColor: '#E8E8E8',

@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -44,4 +44,11 @@ model User {
   // Devices     Devices?   @relation(fields: [device_id], references: [device_id])
   devices     Devices[]
   @@map("user")
+}
+
+model Session {
+  id          Int       @id @default(autoincrement()) @map("_id")
+  session_id  String    @unique
+  expires     Int
+  data        String?
 }

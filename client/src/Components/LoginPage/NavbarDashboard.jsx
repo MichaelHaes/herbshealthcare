@@ -74,7 +74,31 @@ const NavbarDashboard = () => {
               Herbs Care.
             </Box>
             <Box sx={{display:'flex', gap:3}}>
-              <Box href="/dashboard/plant" 
+              <Button href="/dashboard/profile" sx={{
+                color:'white', 
+                fontSize:'25px', 
+                marginTop:'5px', 
+                fontFamily: 'BalooBhaijaan', 
+                '&:hover': {
+                  fontWeight:'bolder'
+              },}}>Profil</Button>
+              <Button href="/dashboard/plants" sx={{
+                color:'white', 
+                fontSize:'25px', 
+                marginTop:'5px', 
+                fontFamily: 'BalooBhaijaan', 
+                '&:hover': {
+                  fontWeight:'bolder'
+              },}}>All Plants</Button>
+              <Button onClick={logout} sx={{
+                color:'white', 
+                fontSize:'25px', 
+                marginTop:'5px', 
+                fontFamily: 'BalooBhaijaan', 
+                '&:hover': {
+                  fontWeight:'bolder'
+              },}}>Logout</Button>
+              {/* <Box href="/dashboard/plant" 
                 sx={{
                   color: 'white',
                   fontSize: '25px',
@@ -107,7 +131,7 @@ const NavbarDashboard = () => {
                   },
                 }}>
                 Log Out
-              </Box>
+              </Box> */}
             </Box>
           </Box>
         </ThemeProvider>

@@ -3,6 +3,7 @@ var cors = require("cors");
 const express = require('express')
 const session = require('express-session')
 const bodyParser = require('body-parser');
+const MySQLStore = require('express-mysql-session')(session);
 const { createServer } = require("http");
 const bcrypt = require('bcrypt')
 const { Server } = require("socket.io")
@@ -17,9 +18,24 @@ app.use(cors({
   credentials: true
 }));
 
+
+const dbOptions = {
+  password: process.env.DB_PASS,
+  user: process.env.DB_USER,
+  database: process.env.MYSQL_DB,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  createDatabaseTable: false,
+};
+const sessionStore = new MySQLStore({
+  expiration: 600000,
+  createDatabaseTable: true,
+}, dbOptions);
+
+
+app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.json());
-app.use(cookieParser());
 app.use(session({
   secret: 'herbscare',
   resave: true,
@@ -27,7 +43,7 @@ app.use(session({
     maxAge: 600000,
   },
   saveUninitialized: false,
-  store
+  store: sessionStore
 }))
 
 const server = createServer(app);
@@ -88,6 +104,7 @@ app.post('/login', async (req, res) => {
             if (isMatch) {
               req.session.authenticated = true
               req.session.user = user;
+              res.cookie('user_id', req.sessionID, { maxAge: 900000, httpOnly: true });
               res.status(200).json(req.session);
             } else {
               res.status(401).json({ error: 'Unauthorized' });
@@ -101,16 +118,23 @@ app.post('/login', async (req, res) => {
 
 app.get('/dashboard', async (req, res) => {
   const user = req.session.user;
+  console.log(user)
   res.json(user)
 })
 
 app.get('/plantsinformation', async (req, res) => {
+  console.log(req.session.user)
   const devices = await prisma.devices.findMany()
   res.json(devices)
 })
 
 app.post('/makepot', async (req, res) => {
-  const newPot = await prisma.devices.create({
+  const sessions = store.sessions;
+  // console.log("From request: ", req.cookies['user_id'])
+  // console.log("From stored: ", req.sessionID)
+  
+  
+  await prisma.devices.create({
     data: {
       user_id: 1,
     }
