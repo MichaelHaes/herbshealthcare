@@ -47,8 +47,8 @@ model User {
 }
 
 model Session {
-  id          Int       @id @default(autoincrement()) @map("_id")
-  session_id  String    @unique
-  expires     Int
-  data        String?
+  id          Int      @id @default(autoincrement())
+  session_id  String   @unique
+  data        Json
+  expires     DateTime
 }

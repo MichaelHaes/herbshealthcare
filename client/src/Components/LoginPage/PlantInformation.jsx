@@ -16,7 +16,9 @@ const PlantInformation = () => {
   const [devices, setDevices] = useState([]);
 
   useEffect(() => { 
-    axios.get(`http://localhost:5000/plantsinformation`)
+    axios.get(`http://localhost:5000/plantsinformation`, {}, {
+      withCredentials: true
+    })
       .then((res) => {
         console.log(res)
         const devices = res.data;

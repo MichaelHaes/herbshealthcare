@@ -1,9 +1,11 @@
 const { PrismaClient } = require('@prisma/client')
+const { PrismaSessionStore } = require('@quixo3/prisma-session-store');
 var cors = require("cors");
 const express = require('express')
 const session = require('express-session')
+const mysql = require('mysql2');
+const { DateTime } = require('luxon')
 const bodyParser = require('body-parser');
-const MySQLStore = require('express-mysql-session')(session);
 const { createServer } = require("http");
 const bcrypt = require('bcrypt')
 const { Server } = require("socket.io")
@@ -11,27 +13,12 @@ const cookieParser = require("cookie-parser")
 const app = express()
 const port = 5000
 const prisma = new PrismaClient()
-const store = new session.MemoryStore()
+const memoryStore = new session.MemoryStore()
 
 app.use(cors({
   origin: 'http://localhost:3000',
   credentials: true
 }));
-
-
-const dbOptions = {
-  password: process.env.DB_PASS,
-  user: process.env.DB_USER,
-  database: process.env.MYSQL_DB,
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  createDatabaseTable: false,
-};
-const sessionStore = new MySQLStore({
-  expiration: 600000,
-  createDatabaseTable: true,
-}, dbOptions);
-
 
 app.use(cookieParser());
 app.use(express.json());
@@ -39,11 +26,12 @@ app.use(bodyParser.json());
 app.use(session({
   secret: 'herbscare',
   resave: true,
+  saveUninitialized: false,
   cookie: {
     maxAge: 600000,
   },
-  saveUninitialized: false,
-  store: sessionStore
+
+  store: memoryStore
 }))
 
 const server = createServer(app);
@@ -55,7 +43,7 @@ const io = new Server(server, {
 });
 
 app.use((req, res, next) => {
-  console.log(store)
+  console.log(memoryStore.sessions)
   next();
 })
 
@@ -89,28 +77,28 @@ app.post('/register', async (req, res) => {
 app.post('/login', async (req, res) => {
   const { email, password } = req.body
   if (email && password) {
-    if (req.session.authenticated) {
-      res.status(200).json(req.session)
-    } else {
-      const user = await prisma.user.findUnique({
-        where: {
-          email: email
-        }
-      })
-      if (user === null) res.status(401).json({ error: 'User not found' })
-      else {
-        bcrypt.compare(password, user.password)
-          .then((isMatch) => {
-            if (isMatch) {
-              req.session.authenticated = true
-              req.session.user = user;
-              res.cookie('user_id', req.sessionID, { maxAge: 900000, httpOnly: true });
-              res.status(200).json(req.session);
-            } else {
-              res.status(401).json({ error: 'Unauthorized' });
-            }
-          })
-          .catch(err => console.error(err.message))
+    const user = await prisma.user.findUnique({
+      where: {
+        email: email
+      }
+    })
+    if (user === null) res.status(401).json({ error: 'User not found' })
+    else {
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (isMatch) {
+        req.session.user = user;
+        const expirationTime = DateTime.now().plus({ hours: 7, minutes: 15 });
+        await prisma.session.create({
+          data: {
+            session_id: req.sessionID,
+            expires: expirationTime.toISO(),
+            data: user
+          }
+        });
+        res.cookie('user_id', req.sessionID, { maxAge: 900000, httpOnly: true });
+        res.status(200).json(req.session);
+      } else {
+        res.status(401).json({ error: 'Unauthorized' });
       }
     }
   }
@@ -123,24 +111,31 @@ app.get('/dashboard', async (req, res) => {
 })
 
 app.get('/plantsinformation', async (req, res) => {
-  console.log(req.session.user)
-  const devices = await prisma.devices.findMany()
+  console.log(req.session)
+  const user_session_id = req.session.user.user_id;
+  console.log(user_session_id)
+  const devices = await prisma.devices.findMany({
+    where: {
+      user_id: user_session_id
+    }
+  })
   res.json(devices)
 })
 
 app.post('/makepot', async (req, res) => {
-  const sessions = store.sessions;
-  // console.log("From request: ", req.cookies['user_id'])
-  // console.log("From stored: ", req.sessionID)
-  
-  
+  console.log(req.session)
+  const user_session_id = req.session.user.user_id;
   await prisma.devices.create({
     data: {
-      user_id: 1,
+      user_id: user_session_id,
     }
   });
 
-  const devices = await prisma.devices.findMany()
+  const devices = await prisma.devices.findMany({
+    where: {
+      user_id: user_session_id
+    }
+  })
   io.emit('newPot', devices);
 
   res.send('new pot is made')
