@@ -1,15 +1,14 @@
 const { PrismaClient } = require('@prisma/client')
-const { PrismaSessionStore } = require('@quixo3/prisma-session-store');
 var cors = require("cors");
 const express = require('express')
 const session = require('express-session')
-const mysql = require('mysql2');
 const { DateTime } = require('luxon')
 const bodyParser = require('body-parser');
 const { createServer } = require("http");
 const bcrypt = require('bcrypt')
 const { Server } = require("socket.io")
 const cookieParser = require("cookie-parser")
+
 const app = express()
 const port = 5000
 const prisma = new PrismaClient()
@@ -26,10 +25,11 @@ app.use(bodyParser.json());
 app.use(session({
   secret: 'herbscare',
   resave: true,
-  saveUninitialized: false,
-  cookie: {
-    maxAge: 600000,
-  },
+  saveUninitialized: true,
+  // cookie: {
+  //   maxAge: 900000,
+  //   httpOnly: true
+  // },
 
   store: memoryStore
 }))
@@ -106,14 +106,13 @@ app.post('/login', async (req, res) => {
 
 app.get('/dashboard', async (req, res) => {
   const user = req.session.user;
-  console.log(user)
+  console.log(req.session)
   res.json(user)
 })
 
 app.get('/plantsinformation', async (req, res) => {
   console.log(req.session)
   const user_session_id = req.session.user.user_id;
-  console.log(user_session_id)
   const devices = await prisma.devices.findMany({
     where: {
       user_id: user_session_id
@@ -125,9 +124,24 @@ app.get('/plantsinformation', async (req, res) => {
 app.post('/makepot', async (req, res) => {
   console.log(req.session)
   const user_session_id = req.session.user.user_id;
+  var potNumber = 0;
+  const dev = await prisma.devices.findMany({
+    where: {
+      user_id: user_session_id
+    }
+  })
+
+  if (dev.length === 0) {
+    potNumber = 1;
+  } else {
+    const maxPotNumber = Math.max(...dev.map(device => device.pot_number));
+    potNumber = maxPotNumber + 1;
+  }
+
   await prisma.devices.create({
     data: {
       user_id: user_session_id,
+      pot_number: potNumber
     }
   });
 

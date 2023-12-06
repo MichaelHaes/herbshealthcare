@@ -16,7 +16,7 @@ const PlantInformation = () => {
   const [devices, setDevices] = useState([]);
 
   useEffect(() => { 
-    axios.get(`http://localhost:5000/plantsinformation`, {}, {
+    axios.get(`http://localhost:5000/plantsinformation`, {
       withCredentials: true
     })
       .then((res) => {
@@ -83,7 +83,7 @@ const PlantInformation = () => {
                   <CardActionArea href={`/dashboard/plants/${device.device_id}`}>
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="div">
-                        Pot {device.device_id}
+                        Pot {device.pot_number}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
                         This pot was created at {formattedCreatedAt}
