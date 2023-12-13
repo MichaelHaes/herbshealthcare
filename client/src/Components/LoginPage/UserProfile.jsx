@@ -20,71 +20,36 @@ export const UserProfile = () => {
     axios.get('http://localhost:5000/userinformation', {
       withCredentials: true,
     })
-    .then((res) => {
-      console.log(res);
-      setUser(res.data);
-    });
+      .then((res) => {
+        console.log(res);
+        setUser(res.data);
+      });
   }, []);
   console.log(user)
   return (
     <Box sx={{
-        backgroundColor: '#C6D8C5', 
-        height: '100vh', 
-        background: `url(${background})`,
-        backgroundSize: 'cover',
-        diplay: 'flex',
-        justifyContent: 'center',
-        alignItems:  'center'
+      backgroundColor: '#C6D8C5',
+      height: '100vh',
+      background: `url(${background})`,
+      backgroundSize: 'cover',
     }}>
-      <NavbarDashboard/>
-      <Container sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-      }}>
-          <Card sx={{
-            width: 500,
-            height: 300,
-            display: 'flex',
-            flexDirection: 'column',
-          }}>
+      <NavbarDashboard />
+      <Container>
+
+          <Card sx={{ maxWidth: 345, mx: 'auto',}}>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                <Box sx={{
-                   textAlign: 'center',
-                   fontFamily: 'Jaldi',
-                   fontWeight: 'bold',
-                    fontSize: '30px'
-                }}>
-                  Profile
-                </Box>
+                User Profile
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                <Box sx={{
-                  display:'flex',
-                  flexDirection:'column',
-                  fontFamily: 'Jaldi',
-                  fontSize: 20,
-                  marginTop: 6
-                }}>
-                  <span>Nama  : </span>
-                  <span>Email : </span>
-                </Box>
+                <Typography>Name: {user.name}</Typography>
+                <Typography>Email: {user.email}</Typography>
+                <Typography>Created At: {user.createdAt}</Typography>
               </Typography>
             </CardContent>
-            <CardActions sx={{
-              marginTop: 7
-            }}>
-              <Button size="small" sx={{
-                fontFamily: 'Jaldi',
-                fontSize: 20
-              }}>Edit</Button>
-              <Button size="small" sx={{
-                color:'red',
-                fontFamily: 'Jaldi',
-                fontSize: 20
-              }}>Delete Profile</Button>
+            <CardActions>
+              <Button size="small">Share</Button>
+              <Button size="small">Learn More</Button>
             </CardActions>
           </Card>
       </Container>

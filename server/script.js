@@ -2,32 +2,36 @@ const { PrismaClient } = require('@prisma/client')
 var cors = require("cors");
 const express = require('express')
 const session = require('express-session')
+const { DateTime } = require('luxon')
 const bodyParser = require('body-parser');
 const { createServer } = require("http");
 const bcrypt = require('bcrypt')
 const { Server } = require("socket.io")
 const cookieParser = require("cookie-parser")
+
 const app = express()
 const port = 5000
 const prisma = new PrismaClient()
-const store = new session.MemoryStore()
+const memoryStore = new session.MemoryStore()
 
 app.use(cors({
-	origin: 'http://localhost:3000',
+  origin: 'http://localhost:3000',
   credentials: true
 }));
 
+app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.json());
-app.use(cookieParser());
 app.use(session({
   secret: 'herbscare',
-  resave: false,
-  cookie: {
-    maxAge: 600000,
-  },
+  resave: true,
   saveUninitialized: true,
-  store
+  // cookie: {
+  //   maxAge: 900000,
+  //   httpOnly: true
+  // },
+
+  store: memoryStore
 }))
 
 const server = createServer(app);
@@ -39,12 +43,12 @@ const io = new Server(server, {
 });
 
 app.use((req, res, next) => {
-  // console.log(store)
+  console.log(memoryStore.sessions)
   next();
 })
 
 io.on('connection', (socket) => {
-  console.log("Connection on: " + socket.id)
+  // console.log("Connection on: " + socket.id)
 })
 
 app.post('/register', async (req, res) => {
@@ -73,52 +77,79 @@ app.post('/register', async (req, res) => {
 app.post('/login', async (req, res) => {
   const { email, password } = req.body
   if (email && password) {
-    if (req.session.authenticated) {
-      res.json(req.session)
-    } else {
-      const user = await prisma.user.findUnique({
-        where: {
-          email: email
-        }
-      })
-      bcrypt.compare(password, user.password)
-        .then((isMatch) => {
-          if (isMatch) {
-            req.session.authenticated = true
-            req.session.user = user;
-            // res.cookie('sessionID', req.sessionID, {
-            //   maxAge: 30 * 24 * 60 * 60 * 1000,
-            //   httpOnly: true,
-            //   sameSite: 'strict'
-            // });
-            res.json(req.session);
-          } else {
-            res.status(401).json({ error: 'Unauthorized' });
+    const user = await prisma.user.findUnique({
+      where: {
+        email: email
+      }
+    })
+    if (user === null) res.status(401).json({ error: 'User not found' })
+    else {
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (isMatch) {
+        req.session.user = user;
+        const expirationTime = DateTime.now().plus({ hours: 7, minutes: 15 });
+        await prisma.session.create({
+          data: {
+            session_id: req.sessionID,
+            expires: expirationTime.toISO(),
+            data: user
           }
-        })
-        .catch(err => console.error(err.message))
+        });
+        res.cookie('user_id', req.sessionID, { maxAge: 900000, httpOnly: true });
+        res.status(200).json(req.session);
+      } else {
+        res.status(401).json({ error: 'Unauthorized' });
+      }
     }
   }
 })
 
 app.get('/dashboard', async (req, res) => {
   const user = req.session.user;
+  console.log(req.session)
   res.json(user)
 })
 
 app.get('/plantsinformation', async (req, res) => {
-  const devices = await prisma.devices.findMany()
+  console.log(req.session)
+  const user_session_id = req.session.user.user_id;
+  const devices = await prisma.devices.findMany({
+    where: {
+      user_id: user_session_id
+    }
+  })
   res.json(devices)
 })
 
 app.post('/makepot', async (req, res) => {
-  const newPot = await prisma.devices.create({
+  console.log(req.session)
+  const user_session_id = req.session.user.user_id;
+  var potNumber = 0;
+  const dev = await prisma.devices.findMany({
+    where: {
+      user_id: user_session_id
+    }
+  })
+
+  if (dev.length === 0) {
+    potNumber = 1;
+  } else {
+    const maxPotNumber = Math.max(...dev.map(device => device.pot_number));
+    potNumber = maxPotNumber + 1;
+  }
+
+  await prisma.devices.create({
     data: {
-      user_id: 1,
+      user_id: user_session_id,
+      pot_number: potNumber
     }
   });
 
-  const devices = await prisma.devices.findMany()
+  const devices = await prisma.devices.findMany({
+    where: {
+      user_id: user_session_id
+    }
+  })
   io.emit('newPot', devices);
 
   res.send('new pot is made')
@@ -141,8 +172,13 @@ app.get('/userinformation', async (req, res) => {
   res.json(req.session.user)
 })
 
+app.delete('/logout', async (req, res) => {
+  req.session.destroy()
+  console.log('logging out on ', req.sessionID)
+  res.sendStatus(200)
+})
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
 

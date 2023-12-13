@@ -33,7 +33,7 @@ const Tools = () => {
     return (
         <Container sx={{
         }}>
-            <ThemeProvider theme={theme}>
+            {/* <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <Typography variant='h4' sx={{
                     textAlign: 'center',
@@ -240,7 +240,7 @@ const Tools = () => {
                         src={Photo3}
                         />
                 </Grid>
-            </Grid>
+            </Grid> */}
         </Container>
     )
 }

@@ -36,11 +36,11 @@ const Login = () => {
       password: formData.password
     };
 
-    const underline = createTheme({
-      palette: {
-        primary: 'white',
-      },
-    });
+    // const underline = createTheme({
+    //   palette: {
+    //     primary: 'white',
+    //   },
+    // });
 
     axios.post(`http://localhost:5000/login`, user, {
       headers: {
@@ -49,8 +49,9 @@ const Login = () => {
       withCredentials: true
     })
       .then(res => {
-        console.log(res)
-        window.location.href = '/dashboard'
+        console.log(res.status)
+        if (200 === res.status) window.location.href = '/dashboard'
+        else console.error('ga nemu bos')
       })
       .catch(error => {
         console.error('Error logging in:', error);
@@ -77,7 +78,7 @@ const Login = () => {
     <Box sx={{
       height: '100vh',
       background: `url(${background})`,
-      backgroundSize: 'cover', 
+      backgroundSize: 'cover',
     }}>
       <Navbar />
       <Container sx={{
@@ -110,12 +111,12 @@ const Login = () => {
           }}>
           <ThemeProvider theme={theme}>
             <FormControl>
-              <InputLabel htmlFor="my-input" sx={{color:'white'}}>Email address</InputLabel>
-              <Input id="my-input" name="email" aria-describedby="my-helper-text" value={formData.email} onChange={handleChange} />
+              <InputLabel htmlFor="my-input" sx={{ color: 'white' }}>Email address</InputLabel>
+              <Input id="my-input" name="email" aria-describedby="my-helper-text" sx={{ color: 'white' }} value={formData.email} onChange={handleChange} />
             </FormControl><br></br>
             <FormControl>
-              <InputLabel htmlFor="my-input" sx={{color:'white'}}>Password</InputLabel>
-              <Input id="my-input" name="password" aria-describedby="my-helper-text" value={formData.password} onChange={handleChange} />
+              <InputLabel htmlFor="my-input" sx={{ color: 'white' }}>Password</InputLabel>
+              <Input id="my-input" name="password" aria-describedby="my-helper-text" sx={{ color: 'white' }} value={formData.password} onChange={handleChange} />
             </FormControl><br></br>
           </ThemeProvider>
           <Button variant="contained" onClick={handleSubmit} color="primary" type="submit" sx={{
