@@ -35,23 +35,34 @@ export const UserProfile = () => {
     }}>
       <NavbarDashboard />
       <Container>
-
-          <Card sx={{ maxWidth: 345, mx: 'auto',}}>
+        <Box sx={{
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          height: '100vh',
+          }}>
+          <Card sx={{ 
+            maxWidth: 345, 
+            mx: 'auto',
+            bgcolor: 'white',
+            width: '500px'
+            }}>
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
+              <Typography gutterBottom variant="h5" component="div" sx={{ fontFamily: 'Jaldi', fontSize: '32px'}}>
                 User Profile
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                <Typography>Name: {user.name}</Typography>
-                <Typography>Email: {user.email}</Typography>
-                <Typography>Created At: {user.createdAt}</Typography>
+                <Typography sx={{ color: 'black', fontFamily: 'Jaldi', fontSize: '22px'}}>Name: {user.name}</Typography>
+                <Typography sx={{ color: 'black', fontFamily: 'Jaldi', fontSize: '22px'}}>Email: {user.email}</Typography>
+                <Typography sx={{ color: 'black', fontFamily: 'Jaldi', fontSize: '22px'}}>Created At: {user.createdAt}</Typography>
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small">Share</Button>
-              <Button size="small">Learn More</Button>
+              <Button size="small" sx={{ fontFamily: 'Jaldi', fontSize: '20px'}}>Share</Button>
+              <Button size="small" sx={{ fontFamily: 'Jaldi', fontSize: '20px'}}>Learn More</Button>
             </CardActions>
           </Card>
+          </Box>
       </Container>
     </Box>
   )

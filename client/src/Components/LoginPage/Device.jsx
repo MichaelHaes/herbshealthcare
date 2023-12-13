@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import NavbarDashboard from './NavbarDashboard'
-import BalooBhaijaan from '../../Font/BalooBhaijaan.ttf'
-import Grid from '@mui/material/Unstable_Grid2'
+import Jaldi from '../../Font/Jaldi-Regular.ttf';
+import background from '../../Assets/LP_background.png'
+import Grid from '@mui/material/Unstable_Grid2';
 import { createTheme, ThemeProvider, MuiCssBaseline } from '@mui/material/styles';
 import Box from '@mui/material/Box'
 import CssBaseline from '@mui/material/CssBaseline';
@@ -30,21 +31,25 @@ export const Device = () => {
     }, []);
     const theme = createTheme({
         typography: {
-          fontFamily: 'BalooBhaijaan',
+          fontFamily: 'Jaldi',
         },
         components: {
           MuiCssBaseline: {
             styleOverrides: `
               @font-face {
-                font-family: 'BalooBhaijaan';
-                src: url(${BalooBhaijaan});
+                font-family: 'Jaldi';
+                src: url(${Jaldi});
               }
             `,
           },
         },
       });
     return (
-        <div style={{backgroundColor: '#C6D8C5', height:'720px'}}>
+        <Box sx={{
+            height: '100vh',
+            background: `url(${background})`,
+            backgroundSize: 'cover',
+        }}>
             <NavbarDashboard />
             <Container>
                 <Grid display="flex" justifyContent="center" alignItems="center">
@@ -52,11 +57,11 @@ export const Device = () => {
                     <CssBaseline />
                     <Box
                         sx={{
-                        fontFamily: 'BalooBhaijaan',
+                        fontFamily: 'Jaldi',
                         fontSize: '80px',
                         height: '100px',
-                        color: 'Black',
-                        marginTop: '20px'
+                        color: 'white',
+                        marginTop: '50px'
                         }}
                     >
                         Device ID - {id}
@@ -64,13 +69,24 @@ export const Device = () => {
                     </ThemeProvider>
                 </Grid>
                     <TableContainer component={Paper} sx={{marginTop:'50px'}}>
-                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        <Table sx={{ 
+                            minWidth: 650,
+                            bgcolor: 'rgba(0, 0, 0, 0.5)',
+                            }} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
                                     {/* <TableCell>No</TableCell> */}
                                     {/* <TableCell>Time</TableCell> */}
-                                    <TableCell align='center' sx={{fontWeight:'Bold'}}>Luminosity</TableCell>
-                                    <TableCell align='center' sx={{fontWeight:'Bold'}}>Humidty</TableCell>
+                                    <TableCell align='center' sx={{
+                                        fontWeight:'Bold',
+                                        color: 'white'
+                                        }}
+                                        >Luminosity</TableCell>
+                                    <TableCell align='center' sx={{
+                                        fontWeight:'Bold',
+                                        color: 'white'
+                                        }}
+                                        >Humidty</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -85,6 +101,6 @@ export const Device = () => {
                         </Table>
                     </TableContainer>
             </Container>
-        </div>
+        </Box>
     )
 }
