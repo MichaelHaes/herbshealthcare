@@ -12,17 +12,18 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
+
 export const UserProfile = () => {
   const [user, setUser] = useState([])
 
   useEffect(() => {
-    // axios.get('http://localhost:5000/userinformation', {
-    //   withCredentials: true,
-    // })
-    // .then((res) => {
-    //   console.log(res);
-    //   setUser(res.data);
-    // });
+    axios.get('http://localhost:5000/userinformation', {
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log(res);
+      setUser(res.data);
+    });
   }, []);
   console.log(user)
   return (
@@ -31,37 +32,63 @@ export const UserProfile = () => {
         height: '100vh', 
         background: `url(${background})`,
         backgroundSize: 'cover',
+        diplay: 'flex',
+        justifyContent: 'center',
+        alignItems:  'center'
     }}>
-      <NavbarDashboard />
-      <Container>
-        
+      <NavbarDashboard/>
+      <Container sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+      }}>
+          <Card sx={{
+            width: 500,
+            height: 300,
+            display: 'flex',
+            flexDirection: 'column',
+          }}>
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                <Box sx={{
+                   textAlign: 'center',
+                   fontFamily: 'Jaldi',
+                   fontWeight: 'bold',
+                    fontSize: '30px'
+                }}>
+                  Profile
+                </Box>
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                <Box sx={{
+                  display:'flex',
+                  flexDirection:'column',
+                  fontFamily: 'Jaldi',
+                  fontSize: 20,
+                  marginTop: 6
+                }}>
+                  <span>Nama  : </span>
+                  <span>Email : </span>
+                </Box>
+              </Typography>
+            </CardContent>
+            <CardActions sx={{
+              marginTop: 7
+            }}>
+              <Button size="small" sx={{
+                fontFamily: 'Jaldi',
+                fontSize: 20
+              }}>Edit</Button>
+              <Button size="small" sx={{
+                color:'red',
+                fontFamily: 'Jaldi',
+                fontSize: 20
+              }}>Delete Profile</Button>
+            </CardActions>
+          </Card>
       </Container>
     </Box>
   )
 }
 
-export default function ImgMediaCard() {
-  return (
-    <Card sx={{ maxWidth: 345 }}>
-      {/* <CardMedia
-        component="img"
-        alt="john"
-        height="140"
-        image=""
-      /> */}
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Lizard
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
-  );
-}
