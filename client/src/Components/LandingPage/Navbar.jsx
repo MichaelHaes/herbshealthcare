@@ -12,7 +12,7 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { Container } from '@mui/system';
 import { Fade } from 'react-reveal';
 
-const Navbar = () => {
+const Navbar = (props) => {
   const theme = createTheme({
     typography: {
       fontFamily: 'Jaldi',
@@ -55,7 +55,7 @@ const Navbar = () => {
               }} onClick={() => {
                 window.location.href = '/';
               }}>
-                Herbs Care.
+                Herbs Care. {props.auth}
               </Box>
               <Box sx={{
                 color: 'white',

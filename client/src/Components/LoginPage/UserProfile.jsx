@@ -17,6 +17,12 @@ export const UserProfile = () => {
   const [user, setUser] = useState([])
 
   useEffect(() => {
+    axios.get(`http://localhost:5000/isLoggedIn`, {
+      withCredentials: true
+    })
+      .then((res) => {
+        if (res.data === 0) window.location.href = '/'
+      });
     axios.get('http://localhost:5000/userinformation', {
       withCredentials: true,
     })

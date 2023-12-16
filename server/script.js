@@ -43,7 +43,7 @@ const io = new Server(server, {
 });
 
 app.use((req, res, next) => {
-  console.log(memoryStore.sessions)
+  // console.log(memoryStore.sessions)
   next();
 })
 
@@ -110,6 +110,15 @@ app.get('/dashboard', async (req, res) => {
   res.json(user)
 })
 
+app.get('/isLoggedIn', async (req, res) => {
+  var status = 0;
+  // console.log('cookie: ', req.cookies.user_id)
+  // console.log(req.sessionID)
+  if(req.cookies.user_id === req.sessionID) status = 1
+  else status = 0
+  res.json(status)
+})
+
 app.get('/plantsinformation', async (req, res) => {
   console.log(req.session)
   const user_session_id = req.session.user.user_id;
@@ -165,11 +174,6 @@ app.get('/device', async (req, res) => {
     }
   })
   res.json(plants)
-})
-
-app.get('/userinformation', async (req, res) => {
-  console.log('Cookies: ', req.session)
-  res.json(req.session.user)
 })
 
 app.delete('/logout', async (req, res) => {

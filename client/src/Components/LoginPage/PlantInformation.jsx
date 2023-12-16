@@ -16,6 +16,12 @@ const PlantInformation = () => {
   const [devices, setDevices] = useState([]);
 
   useEffect(() => {
+    axios.get(`http://localhost:5000/isLoggedIn`, {
+      withCredentials: true
+    })
+      .then((res) => {
+        if (res.data === 0) window.location.href = '/'
+      });
     axios.get(`http://localhost:5000/plantsinformation`, {
       withCredentials: true
     })

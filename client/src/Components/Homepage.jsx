@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import AboutUs from './LandingPage/AboutUs';
 import Tools from './LandingPage/Tools';
 import Landing from './LandingPage/Landing';
@@ -9,10 +10,19 @@ import { useTheme } from '@mui/system';
 
 const Homepage = () => {
   const theme = useTheme();
+  
+  useEffect(() => {
+    axios.get(`http://localhost:5000/isLoggedIn`, {
+      withCredentials: true
+    })
+      .then((res) => {
+        if(res.data === 1) window.location.href = '/dashboard'
+      });
+  }, []);
 
   return (
     <Box>
-      <Navbar />
+      <Navbar/>
       <Box
         id="section1"
         sx={{
