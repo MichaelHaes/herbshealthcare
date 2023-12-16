@@ -75,12 +75,6 @@ const Login = () => {
   });
 
   return (
-    <Box sx={{
-      height: '100vh',
-      background: `url(${background})`,
-      backgroundSize: 'cover',
-    }}>
-      <Navbar />
       <Container sx={{
         paddingTop: '100px'
       }}>
@@ -112,11 +106,31 @@ const Login = () => {
           <ThemeProvider theme={theme}>
             <FormControl>
               <InputLabel htmlFor="my-input" sx={{ color: 'white' }}>Email address</InputLabel>
-              <Input id="my-input" name="email" aria-describedby="my-helper-text" sx={{ color: 'white' }} value={formData.email} onChange={handleChange} />
+              <Input id="my-input" name="email" aria-describedby="my-helper-text" sx={{ color: 'white',
+              '&::before': {
+                  borderBottom: '1px solid white',
+                  color: 'white'
+                },
+                '&::after': {
+                  borderBottom: '1px solid white',
+                  color: 'white'
+                },
+                '&:hover':{
+              borderBottom: '1px solid white', 
+            } }} value={formData.email} onChange={handleChange} />
             </FormControl><br></br>
             <FormControl>
               <InputLabel htmlFor="my-input" sx={{ color: 'white' }}>Password</InputLabel>
-              <Input id="my-input" name="password" aria-describedby="my-helper-text" sx={{ color: 'white' }} value={formData.password} onChange={handleChange} />
+              <Input id="my-input" name="password" aria-describedby="my-helper-text" sx={{ color: 'white',
+            '&::before': {
+              borderBottom: '1px solid white',
+            },
+            '&::after': {
+              borderBottom: '1px solid white', 
+            },
+            '&:hover':{
+              borderBottom: '1px solid white', 
+            } }} value={formData.password} onChange={handleChange} />
             </FormControl><br></br>
           </ThemeProvider>
           <Button variant="contained" onClick={handleSubmit} color="primary" type="submit" sx={{
@@ -137,7 +151,7 @@ const Login = () => {
           }}>
             Login
           </Button>
-          <Button variant='text' href='/register' sx={{
+          {/* <Button variant='text' href='/register' sx={{
             marginTop: '10px',
             mx: 'auto',
             width: '100px',
@@ -155,10 +169,22 @@ const Login = () => {
             color: '#FFFFFF'
           }}>
             Register
-          </Button>
+          </Button> */}
+          <Box sx={{
+            color: 'white',
+            display: 'flex',
+            justifyContent: 'end',
+            '& u': {
+              cursor: 'pointer',  // Change the cursor to pointer on hover
+            },
+          }}>
+            Doesn't have any account?&nbsp;
+            <u onClick={() => {
+            window.location.href = '/register';
+          }}>Register Here</u>
+          </Box>
         </Paper>
       </Container>
-    </Box>
   );
 };
 

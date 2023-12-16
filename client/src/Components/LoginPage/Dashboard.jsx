@@ -44,14 +44,6 @@ const Dashboard = () => {
     });
 
     return (
-        
-        <Box sx={{
-            backgroundColor: '#C6D8C5', 
-            height: '100vh', 
-            background: `url(${background})`,
-            backgroundSize: 'cover',
-        }}>
-            <NavbarDashboard />
             <Container>
                 <Grid container spacing ={5}
                 sx={{
@@ -145,7 +137,6 @@ const Dashboard = () => {
                     </Grid>
                 </Grid>
             </Container>
-        </Box>
     )
 }
 
