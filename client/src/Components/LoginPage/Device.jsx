@@ -29,7 +29,7 @@ export const Device = () => {
       .then((res) => {
         setIsLoggedIn(res.data)
         console.log(isLoggedIn)
-        if (isLoggedIn === 0) window.location.href = '/dashboard'
+        if (isLoggedIn === 0) window.location.href = '/'
       });
 
     axios.get(`http://localhost:5000/device`, { params: { id } })

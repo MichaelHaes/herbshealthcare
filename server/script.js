@@ -95,7 +95,7 @@ app.post('/login', async (req, res) => {
             data: user
           }
         });
-        res.cookie('user_id', req.sessionID, { maxAge: 900000, httpOnly: true });
+        res.cookie('user_id', req.sessionID, { maxAge: 60*60*1000, httpOnly: true });
         res.status(200).json(req.session);
       } else {
         res.status(401).json({ error: 'Unauthorized' });
@@ -180,6 +180,12 @@ app.delete('/logout', async (req, res) => {
   console.log('logging out on ', req.sessionID)
   res.sendStatus(200)
 })
+
+app.get('/userinformation', async (req, res) => {
+  console.log('Cookies: ', req.session)
+  res.json(req.session.user)
+})
+
 
 server.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

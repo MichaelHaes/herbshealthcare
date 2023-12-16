@@ -24,7 +24,7 @@ export const WaterReservoir = () => {
       .then((res) => {
         setIsLoggedIn(res.data)
         console.log(isLoggedIn)
-        if(isLoggedIn === 0) window.location.href = '/dashboard'
+        if(isLoggedIn === 0) window.location.href = '/'
       });
 
     axios.get(`http://localhost:5000/dashboard`, {

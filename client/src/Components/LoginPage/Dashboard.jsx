@@ -26,8 +26,8 @@ const Dashboard = () => {
     })
       .then((res) => {
         setIsLoggedIn(res.data)
-        console.log(isLoggedIn)
-        if(isLoggedIn === 0) window.location.href = '/dashboard'
+        console.log(res.data, isLoggedIn)
+        if(isLoggedIn === 0) window.location.href = '/'
       });
 
     axios.get(`http://localhost:5000/dashboard`, {
