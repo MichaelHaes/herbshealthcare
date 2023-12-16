@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Navbar from './LandingPage/Navbar';
+import Navbar from './Navbar';
 import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'

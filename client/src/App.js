@@ -2,7 +2,6 @@ import './App.css';
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import Homepage from './Components/Homepage';
 import Login from './Components/Login';
-import Navbar from './Components/LandingPage/Navbar';
 import Dashboard from './Components/LoginPage/Dashboard';
 import Register from './Components/Register';
 import PlantInformation from './Components/LoginPage/PlantInformation';

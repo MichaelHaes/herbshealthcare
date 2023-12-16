@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import NavbarDashboard from './NavbarDashboard'
+import Navbar from '../Navbar'
 import axios from 'axios';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -14,14 +14,18 @@ const PlantInformation = () => {
   const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   const [devices, setDevices] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(1)
 
   useEffect(() => {
     axios.get(`http://localhost:5000/isLoggedIn`, {
       withCredentials: true
     })
       .then((res) => {
-        if (res.data === 0) window.location.href = '/'
+        setIsLoggedIn(res.data)
+        console.log(isLoggedIn)
+        if(isLoggedIn === 0) window.location.href = '/dashboard'
       });
+
     axios.get(`http://localhost:5000/plantsinformation`, {
       withCredentials: true
     })
@@ -60,7 +64,7 @@ const PlantInformation = () => {
       background: `url(${background})`,
       backgroundSize: 'cover',
     }}>
-      <NavbarDashboard />
+    <Navbar auth={isLoggedIn}/>
       <Container>
         <Grid display='flex' justifyContent='center'>
           <Button onClick={makePot} variant="contained" sx={{

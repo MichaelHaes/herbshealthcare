@@ -5,24 +5,26 @@ import Tools from './LandingPage/Tools';
 import Landing from './LandingPage/Landing';
 import Box from '@mui/material/Box';
 import background from '../Assets/LP_background.png';
-import Navbar from './LandingPage/Navbar';
+import Navbar from './Navbar';
 import { useTheme } from '@mui/system';
 
 const Homepage = () => {
   const theme = useTheme();
+  const [isLoggedIn, setIsLoggedIn] = useState(0)
   
   useEffect(() => {
     axios.get(`http://localhost:5000/isLoggedIn`, {
       withCredentials: true
     })
       .then((res) => {
-        if(res.data === 1) window.location.href = '/dashboard'
+        setIsLoggedIn(res.data)
+        if(isLoggedIn === 1) window.location.href = '/dashboard'
       });
   }, []);
 
   return (
     <Box>
-      <Navbar/>
+      <Navbar auth={isLoggedIn}/>
       <Box
         id="section1"
         sx={{

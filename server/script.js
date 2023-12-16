@@ -106,16 +106,15 @@ app.post('/login', async (req, res) => {
 
 app.get('/dashboard', async (req, res) => {
   const user = req.session.user;
-  console.log(req.session)
+  // console.log(req.session)
   res.json(user)
 })
 
 app.get('/isLoggedIn', async (req, res) => {
-  var status = 0;
-  // console.log('cookie: ', req.cookies.user_id)
-  // console.log(req.sessionID)
-  if(req.cookies.user_id === req.sessionID) status = 1
-  else status = 0
+  var status;
+  if(req.cookies.user_id === req.sessionID) status = 1;
+  else status = 0;
+  console.log(status)
   res.json(status)
 })
 

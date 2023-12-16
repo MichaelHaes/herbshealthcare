@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import NavbarDashboard from './NavbarDashboard'
+import Navbar from '../Navbar'
 import { Button } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import Typography from '@mui/material/Typography'
@@ -18,13 +18,16 @@ import { Fade } from 'react-reveal';
 
 const Dashboard = () => {
   const [user, setUser] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(1)
 
   useEffect(() => {
     axios.get(`http://localhost:5000/isLoggedIn`, {
       withCredentials: true
     })
       .then((res) => {
-        if (res.data === 0) window.location.href = '/'
+        setIsLoggedIn(res.data)
+        console.log(isLoggedIn)
+        if(isLoggedIn === 0) window.location.href = '/dashboard'
       });
 
     axios.get(`http://localhost:5000/dashboard`, {
@@ -60,7 +63,7 @@ const Dashboard = () => {
       background: `url(${background})`,
       backgroundSize: 'cover',
     }}>
-      <NavbarDashboard />
+      <Navbar auth={isLoggedIn}/>
       <Container>
         <Grid container spacing={5}
           sx={{

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Box } from '@mui/material'
-import NavbarDashboard from './NavbarDashboard'
+import Navbar from '../Navbar'
 import Container from '@mui/material/Container'
 import background from '../../Assets/LP_background.png'
 import Jaldi from '../../Font/Jaldi-Regular.ttf';
@@ -15,14 +15,18 @@ import Typography from '@mui/material/Typography';
 
 export const UserProfile = () => {
   const [user, setUser] = useState([])
+  const [isLoggedIn, setIsLoggedIn] = useState(1)
 
   useEffect(() => {
     axios.get(`http://localhost:5000/isLoggedIn`, {
       withCredentials: true
     })
       .then((res) => {
-        if (res.data === 0) window.location.href = '/'
+        setIsLoggedIn(res.data)
+        console.log(isLoggedIn)
+        if(isLoggedIn === 0) window.location.href = '/dashboard'
       });
+
     axios.get('http://localhost:5000/userinformation', {
       withCredentials: true,
     })
@@ -39,7 +43,7 @@ export const UserProfile = () => {
       background: `url(${background})`,
       backgroundSize: 'cover',
     }}>
-      <NavbarDashboard />
+      <Navbar auth={isLoggedIn}/>
       <Container>
         <Box sx={{
           display: 'flex', 
