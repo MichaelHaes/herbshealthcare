@@ -1,9 +1,13 @@
 import React from 'react'
 import * as React from 'react';
-import { Card, CardContent, CardMedia, CardActionArea } from '@mui/material'
-import Typography from '@mui/material/Typography'
-import Logo from '../Assets/card_logo.png'
-import Box from '@mui/material/Box'
+import { Card, CardContent, CardMedia, CardActionArea } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import Logo from '../Assets/card_logo.png';
+import Box from '@mui/material/Box';
+import Jaldi from '../../Font/Jaldi-Regular.ttf';
+import { Fade } from 'react-reveal';
+import { createTheme, ThemeProvider, MuiCssBaseline } from '@mui/material/styles';
+
 const Cards = (props) => {
     return (
         <Card

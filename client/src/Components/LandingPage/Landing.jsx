@@ -27,20 +27,6 @@ const Landing = () => {
     },
   });
 
-  const styles = (theme) => ({
-    Typography: {
-      [theme.breakpoints.down('md')]: {
-        
-      },
-      [theme.breakpoints.up('md')]: {
-        
-      },
-      [theme.breakpoints.up('lg')]: {
-        
-      },
-    },
-  });
-
   return (
     <Container
       sx={{
@@ -125,7 +111,7 @@ const Landing = () => {
                     color: 'white',
                     backgroundColor: 'rgba(255, 255, 255, 0.3)',
                     cursor: 'pointer',
-                    transition: 'background-color 1s, color 1s'
+                    transition: 'background-color 1s, color 1s',
                   },
                 }} onClick={() => {
                   window.location.href = '#section2';

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import NavbarDashboard from './NavbarDashboard'
+import Navbar from '../Navbar'
 import { Button } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import Typography from '@mui/material/Typography'
@@ -17,118 +17,138 @@ import { Fade } from 'react-reveal';
 
 
 const Dashboard = () => {
-    const [user, setUser] = useState([]);
+  const [user, setUser] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(1)
 
-    useEffect(() => {
-        // axios.get(`http://localhost:5000/dashboard`)
-        //     .then((res) => {
-        //         const fetchedUsers = res.data;
-        //         setUser(fetchedUsers);
-        //     });
-    }, []);
+  useEffect(() => {
+    axios.get(`http://localhost:5000/isLoggedIn`, {
+      withCredentials: true
+    })
+      .then((res) => {
+        setIsLoggedIn(res.data)
+        console.log(res.data, isLoggedIn)
+        if(isLoggedIn === 0) window.location.href = '/'
+      });
 
-    const theme = createTheme({
-        typography: {
-          fontFamily: 'Jaldi',
-        },
-        components: {
-          MuiCssBaseline: {
-            styleOverrides: `
+    axios.get(`http://localhost:5000/dashboard`, {
+      withCredentials: true
+    })
+      .then((res) => {
+        const fetchedUsers = res.data;
+        setUser(fetchedUsers);
+      });
+  }, []);
+
+  const theme = createTheme({
+    typography: {
+      fontFamily: 'Jaldi',
+    },
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: `
                 @font-face {
                   font-family: 'Jaldi';
                   src: url(${Jaldi});
                 }
               `,
-          },
-        },
-    });
+      },
+    },
+  });
 
-    return (
-            <Container>
-                <Grid container spacing ={5}
-                sx={{
-                    marginTop: '10vh', 
-                    flexDirection: 'column', 
-                    alignContent: 'center', 
-                    marginTop: '-2vh' 
-                }}>
-                    <ThemeProvider theme={theme}>
-                        <CssBaseline />
-                        <Box
-                            sx={{
-                                marginTop: "70px",
-                                fontFamily: 'Jaldi',
-                                fontSize: '100px',
-                                height: '100px',
-                                color: 'white',
-                                textAlign: 'center'
-                            }}
-                        >
-                            Welcome Back,
-                        </Box>
-                        <Box
-                            sx={{
-                                fontFamily: 'Jaldi',
-                                fontSize: '60px',
-                                height: '100px',
-                                color: 'Black',
-                                textAlign: 'center',
-                                padding: '50px'
-                            }}
-                        >
-                            {/* {user.name} */}
-                        </Box>
-                    </ThemeProvider>
-                </Grid>
-                <Grid container sx={{ paddingTop: '80px' }}>
-                    <Grid item xs={6} 
-                        sx={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center'
-                        }}
-                    >
-                        <Button href='/dashboard/plants' variant="contained"
-                            sx={{
-                                fontFamily: 'Jaldi',
-                                borderRadius: '10px',
-                                border: '1px solid white',
-                                fontSize: '20px',
-                                backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                                width: '66%',
-                                color: 'white',
-                                '&:hover': {
-                                    color: 'white',
-                                    backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                                    transition: 'background-color 1s, color 1s',
-                                },
+  return (
 
-                            }}
-                        >
-                            Informasi Tanaman
-                        </Button>
-                    </Grid>
-                    <Grid item xs={6}
-                        sx={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center'
-                        }}
-                    >
-                        <Button href='/dashboard/reservoir' variant="contained"
-                            sx={{
-                                fontFamily: 'Jaldi',
-                                borderRadius: '10px',
-                                border: '1px solid white',
-                                fontSize: '20px',
-                                backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                                width: '66%',
-                                color: 'white',
-                                '&:hover': {
-                                    color: 'white',
-                                    backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                                    transition: 'background-color 1s, color 1s',
-                                },
+    <Box sx={{
+      backgroundColor: '#C6D8C5',
+      height: '100vh',
+      background: `url(${background})`,
+      backgroundSize: 'cover',
+    }}>
+      <Navbar auth={isLoggedIn}/>
+      <Container>
+        <Grid container spacing={5}
+          sx={{
+            marginTop: '10vh',
+            flexDirection: 'column',
+            alignContent: 'center',
+            marginTop: '-2vh'
+          }}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Box
+              sx={{
+                marginTop: "70px",
+                fontFamily: 'Jaldi',
+                fontSize: '100px',
+                height: '100px',
+                color: 'white',
+                textAlign: 'center'
+              }}
+            >
+              Welcome Back,
+            </Box>
+            <Box
+              sx={{
+                fontFamily: 'Jaldi',
+                fontSize: '60px',
+                height: '100px',
+                color: 'White',
+                textAlign: 'center',
+                padding: '50px'
+              }}
+            >
+              {user.name}
+            </Box>
+          </ThemeProvider>
+        </Grid>
+        <Grid container sx={{ paddingTop: '80px' }}>
+          <Grid item xs={6}
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            <Button href='/dashboard/plants' variant="contained"
+              sx={{
+                fontFamily: 'Jaldi',
+                borderRadius: '10px',
+                border: '1px solid white',
+                fontSize: '20px',
+                backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                width: '66%',
+                color: 'white',
+                '&:hover': {
+                  color: 'white',
+                  backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                  transition: 'background-color 1s, color 1s',
+                },
+
+              }}
+            >
+              Informasi Tanaman
+            </Button>
+          </Grid>
+          <Grid item xs={6}
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            <Button href='/dashboard/reservoir' variant="contained"
+              sx={{
+                fontFamily: 'Jaldi',
+                borderRadius: '10px',
+                border: '1px solid white',
+                fontSize: '20px',
+                backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                width: '66%',
+                color: 'white',
+                '&:hover': {
+                  color: 'white',
+                  backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                  transition: 'background-color 1s, color 1s',
+                },
 
                             }}
                         >
@@ -137,6 +157,7 @@ const Dashboard = () => {
                     </Grid>
                 </Grid>
             </Container>
+        </Box>
     )
 }
 
