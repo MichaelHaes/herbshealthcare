@@ -88,13 +88,13 @@ app.post('/login', async (req, res) => {
       if (isMatch) {
         req.session.user = user;
         const expirationTime = DateTime.now().plus({ hours: 7, minutes: 15 });
-        await prisma.session.create({
-          data: {
-            session_id: req.sessionID,
-            expires: expirationTime.toISO(),
-            data: user
-          }
-        });
+        // await prisma.session.create({
+        //   data: {
+        //     session_id: req.sessionID,
+        //     expires: expirationTime.toISO(),
+        //     data: user
+        //   }
+        // });
         res.cookie('user_id', req.sessionID, { maxAge: 60*60*1000, httpOnly: true });
         res.status(200).json(req.session);
       } else {
