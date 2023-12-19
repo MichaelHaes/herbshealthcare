@@ -31,10 +31,10 @@ const Navbar = (props) => {
       },
       withCredentials: true
     })
-    .then((res) => {
-      window.location.href =  '/'
-    });
-    
+      .then((res) => {
+        window.location.href = '/'
+      });
+
   }
 
   return (
@@ -52,19 +52,37 @@ const Navbar = (props) => {
               justifyContent: 'space-between',
               width: '100%',
             }}>
-              <Box href="/" sx={{
-                color: 'white',
-                fontSize: '25px',
-                fontFamily: 'Jaldi',
-                '&:hover': {
-                  fontWeight: 'bolder',
-                  cursor: 'pointer'
-                },
-              }} onClick={() => {
-                window.location.href = '/';
-              }}>
-                Herbs Care.
-              </Box>
+              {props.auth === 1 && (
+                <Box href="/" sx={{
+                  color: 'white',
+                  fontSize: '25px',
+                  fontFamily: 'Jaldi',
+                  '&:hover': {
+                    fontWeight: 'bolder',
+                    cursor: 'pointer'
+                  },
+                }} onClick={() => {
+                  window.location.href = '/dashboard';
+                }}>
+                  Herbs Care.
+                </Box>
+              )}
+              
+              {props.auth !== 1 && (
+                <Box href="/" sx={{
+                  color: 'white',
+                  fontSize: '25px',
+                  fontFamily: 'Jaldi',
+                  '&:hover': {
+                    fontWeight: 'bolder',
+                    cursor: 'pointer'
+                  },
+                }} onClick={() => {
+                  window.location.href = '/';
+                }}>
+                  Herbs Care.
+                </Box>
+              )}
               {props.auth !== 1 && (
                 <Box
                   sx={{

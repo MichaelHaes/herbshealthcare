@@ -8,6 +8,7 @@ const { createServer } = require("http");
 const bcrypt = require('bcrypt')
 const { Server } = require("socket.io")
 const cookieParser = require("cookie-parser")
+const mqtt = require("mqtt")
 
 const app = express()
 const port = 5000
@@ -42,13 +43,44 @@ const io = new Server(server, {
   }
 });
 
-app.use((req, res, next) => {
+io.on('connection', (socket) => {
+  // console.log("Connection on: " + socket.id)
+})
+
+const mqtt_client = mqtt.connect('mqtt://broker.emqx.io:1883')
+
+mqtt_client.on('connect', () => {
+  // mqtt_client.subscribe('MOBILE_PERVASIVE_HERBSCARE2023');
+  console.log('Connected')
+})
+
+app.use(function (req, res, next) {
+  req.mqttPublish = function (topic, message) {
+    mqtt_client.publish(topic, message)
+  }
+
+  req.mqttSubscribe = function (topic, callback) {
+    mqtt_client.subscribe(topic)
+    mqtt_client.on('message', function (t, m) {
+      if (t === topic) {
+        callback(m.toString())
+      }
+    })
+  }
+
   // console.log(memoryStore.sessions)
   next();
 })
 
-io.on('connection', (socket) => {
-  // console.log("Connection on: " + socket.id)
+app.post('/testmqtt', async (req, res) => {
+  try {
+    await req.mqttPublish('MOBILE_PERVASIVE_HERBSCARE2023', Math.floor(Math.random() * 10).toString());
+
+    res.send('MQTT test initiated');
+  } catch (error) {
+    console.error('Error in MQTT operation:', error);
+    res.status(500).send('Internal Server Error');
+  }
 })
 
 app.post('/register', async (req, res) => {
@@ -95,7 +127,7 @@ app.post('/login', async (req, res) => {
         //     data: user
         //   }
         // });
-        res.cookie('user_id', req.sessionID, { maxAge: 60*60*1000, httpOnly: true });
+        res.cookie('user_id', req.sessionID, { maxAge: 60 * 60 * 1000, httpOnly: true });
         res.status(200).json(req.session);
       } else {
         res.status(401).json({ error: 'Unauthorized' });
@@ -106,20 +138,23 @@ app.post('/login', async (req, res) => {
 
 app.get('/dashboard', async (req, res) => {
   const user = req.session.user;
+  req.mqttSubscribe('MOBILE_PERVASIVE_HERBSCARE2023', async (message) => {
+    console.log('Received message: ' + message);
+  });
   // console.log(req.session)
   res.json(user)
 })
 
 app.get('/isLoggedIn', async (req, res) => {
   var status;
-  if(req.cookies.user_id === req.sessionID) status = 1;
+  if (req.cookies.user_id === req.sessionID) status = 1;
   else status = 0;
-  console.log(status)
+  // console.log(status)
   res.json(status)
 })
 
 app.get('/plantsinformation', async (req, res) => {
-  console.log(req.session)
+  // console.log(req.session)
   const user_session_id = req.session.user.user_id;
   const devices = await prisma.devices.findMany({
     where: {
@@ -130,7 +165,7 @@ app.get('/plantsinformation', async (req, res) => {
 })
 
 app.post('/makepot', async (req, res) => {
-  console.log(req.session)
+  // console.log(req.session)
   const user_session_id = req.session.user.user_id;
   var potNumber = 0;
   const dev = await prisma.devices.findMany({

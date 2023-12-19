@@ -23,7 +23,7 @@ const PlantInformation = () => {
       .then((res) => {
         setIsLoggedIn(res.data)
         console.log(isLoggedIn)
-        if(isLoggedIn === 0) window.location.href = '/'
+        if (isLoggedIn === 0) window.location.href = '/'
       });
 
     axios.get(`http://localhost:5000/plantsinformation`, {
@@ -64,7 +64,7 @@ const PlantInformation = () => {
       background: `url(${background})`,
       backgroundSize: 'cover',
     }}>
-    <Navbar auth={isLoggedIn}/>
+      <Navbar auth={isLoggedIn} />
       <Container>
         <Grid display='flex' justifyContent='center'>
           <Button onClick={makePot} variant="contained" sx={{

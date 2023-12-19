@@ -27,7 +27,7 @@ const Dashboard = () => {
       .then((res) => {
         setIsLoggedIn(res.data)
         console.log(res.data, isLoggedIn)
-        if(isLoggedIn === 0) window.location.href = '/'
+        if (isLoggedIn === 0) window.location.href = '/'
       });
 
     axios.get(`http://localhost:5000/dashboard`, {
@@ -56,27 +56,24 @@ const Dashboard = () => {
   });
 
   return (
-
     <Box sx={{
       backgroundColor: '#C6D8C5',
       height: '100vh',
       background: `url(${background})`,
       backgroundSize: 'cover',
     }}>
-      <Navbar auth={isLoggedIn}/>
+      <Navbar auth={isLoggedIn} />
       <Container>
         <Grid container spacing={5}
           sx={{
-            marginTop: '10vh',
             flexDirection: 'column',
             alignContent: 'center',
-            marginTop: '-2vh'
           }}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <Box
               sx={{
-                marginTop: "70px",
+                marginTop: "25vh",
                 fontFamily: 'Jaldi',
                 fontSize: '100px',
                 height: '100px',
@@ -150,15 +147,15 @@ const Dashboard = () => {
                   transition: 'background-color 1s, color 1s',
                 },
 
-                            }}
-                        >
-                            Informasi Penyimpanan Air
-                        </Button>
-                    </Grid>
-                </Grid>
-            </Container>
-        </Box>
-    )
+              }}
+            >
+              Informasi Penyimpanan Air
+            </Button>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
+  )
 }
 
 export default Dashboard
