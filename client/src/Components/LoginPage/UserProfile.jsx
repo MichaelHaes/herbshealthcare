@@ -45,13 +45,7 @@ export const UserProfile = () => {
   }
 
   const handleSubmit = async () => {
-    await axios.post(`http://localhost:5000/testmqtt`)
-    .then(res => {
-      console.log(res)
-    })
-    .catch(error => {
-      console.error('Error adding user:', error);
-    });
+    console.log('belom dibikin ko')
   }
 
   const dateObject = new Date(user.createdAt)

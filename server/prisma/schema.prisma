@@ -25,11 +25,12 @@ model Devices {
 
 model SensorData {
   sensor_id   Int       @id @default(autoincrement()) @unique
-  device_id   Int?       
+  device_id   Int       
+  user_id     Int       
   createdAt   DateTime  @default(now())
-  humidity    String    
-  luminosity  String    
-  waterLevel  String
+  humidity    Int    
+  luminosity  Int    
+  waterLevel  Int
 
   Devices     Devices?   @relation(fields: [device_id], references: [device_id])
   @@map("sensor_data")
@@ -37,7 +38,7 @@ model SensorData {
 
 model User {
   user_id     Int       @id @default(autoincrement())
-  device_id   Int?
+  // device_id   Int?
   name        String     
   createdAt   DateTime? @default(now())
   email       String    @unique
@@ -48,9 +49,9 @@ model User {
   @@map("user")
 }
 
-model Session {
-  id          Int      @id @default(autoincrement())
-  session_id  String   @unique
-  data        Json
-  expires     DateTime
-}
+// model Session {
+//   id          Int      @id @default(autoincrement())
+//   session_id  String   @unique
+//   data        Json
+//   expires     DateTime
+// }

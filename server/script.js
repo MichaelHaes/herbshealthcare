@@ -72,17 +72,6 @@ app.use(function (req, res, next) {
   next();
 })
 
-app.post('/testmqtt', async (req, res) => {
-  try {
-    await req.mqttPublish('MOBILE_PERVASIVE_HERBSCARE2023', Math.floor(Math.random() * 10).toString());
-
-    res.send('MQTT test initiated');
-  } catch (error) {
-    console.error('Error in MQTT operation:', error);
-    res.status(500).send('Internal Server Error');
-  }
-})
-
 app.post('/register', async (req, res) => {
   const saltRounds = 10
   const { name, email, password, confirm_password } = req.body.user
@@ -139,7 +128,28 @@ app.post('/login', async (req, res) => {
 app.get('/dashboard', async (req, res) => {
   const user = req.session.user;
   req.mqttSubscribe('MOBILE_PERVASIVE_HERBSCARE2023', async (message) => {
-    console.log('Received message: ' + message);
+    const parsedMsg = JSON.parse(message)
+    // console.log('Received message: ' + message);
+    // console.log('Received message: ' + parsedMsg.deviceId);
+    // console.log('Received message: ' + parsedMsg.waterLevelPercentage);
+    // console.log('Received message: ' + parsedMsg.soilMoistureValue);
+    // console.log('Received message: ' + parsedMsg.brightnessValue);
+    try {
+      await prisma.sensorData.create({
+        data: {
+          device_id: parsedMsg.deviceId,
+          user_id: req.session.user.user_id,
+          humidity: parsedMsg.soilMoistureValue,
+          luminosity: parsedMsg.brightnessValue,
+          waterLevel: parsedMsg.waterLevelPercentage,
+        }
+      });
+      // Code to execute if the operation is successful
+    } catch (error) {
+      // Code to handle the error
+      console.error('Error creating sensor data:', error);
+    }
+    
   });
   // console.log(req.session)
   res.json(user)
@@ -221,6 +231,13 @@ app.get('/userinformation', async (req, res) => {
   res.json(req.session.user)
 })
 
+app.post('/eventhandler', async (req, res) => {
+  console.log(req.body)
+  if (req.body.params.type === 'pump')
+    req.mqttPublish('MOBILE_PERVASIVE_HERBSCARE2023_EVENT', req.body.params.waterPumpOn.toString());
+  else if (req.body.params.type === 'led')
+    req.mqttPublish('MOBILE_PERVASIVE_HERBSCARE2023_EVENT', req.body.params.ledLightOn.toString());
+})
 
 server.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
