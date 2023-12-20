@@ -29,6 +29,7 @@ model SensorData {
   createdAt   DateTime  @default(now())
   humidity    String    
   luminosity  String    
+  waterLevel  String
 
   Devices     Devices?   @relation(fields: [device_id], references: [device_id])
   @@map("sensor_data")

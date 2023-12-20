@@ -1,8 +1,7 @@
 import './App.css';
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import Homepage from './Components/Homepage';
-import Login from './Components/LoginPage';
-import Navbar from './Components/LandingPage/Navbar';
+import LoginPage from './Components/LoginPage';
 import Dashboard from './Components/LoginPage/Dashboard';
 import Register from './Components/Register';
 import PlantInformation from './Components/LoginPage/PlantInformation';
@@ -23,7 +22,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Homepage />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/dashboard/plants" element={<PlantInformation />} />
