@@ -1,12 +1,8 @@
 import './App.css';
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import Homepage from './Components/Homepage';
-<<<<<<< HEAD
 import Login from './Components/LoginPage';
 import Navbar from './Components/LandingPage/Navbar';
-=======
-import Login from './Components/Login';
->>>>>>> mike
 import Dashboard from './Components/LoginPage/Dashboard';
 import Register from './Components/Register';
 import PlantInformation from './Components/LoginPage/PlantInformation';
