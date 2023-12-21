@@ -94,7 +94,7 @@ const AboutUs = () => {
                     </Grid>
                 </Grid>
             </Grid>
-            {/* <Grid sx={{
+            <Grid sx={{
                 paddingTop:'40px',
             }}>
             <ThemeProvider theme={theme}>
@@ -181,7 +181,7 @@ const AboutUs = () => {
                 }}>
                     {desc[button]}
                 </Card>
-            </Grid> */}
+            </Grid>
         </Container>
     )
 }
